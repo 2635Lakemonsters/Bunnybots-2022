@@ -52,7 +52,7 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
   private void configureButtonBindings() {
-    Button intakeButton = new JoystickButton(rightJoystick, Constants.R_SPIN_INTAKE_FORWARD_CHANNEL);
+    JoystickButton intakeButton = new JoystickButton(rightJoystick, Constants.R_SPIN_INTAKE_FORWARD_CHANNEL);
 
     intakeButton.whenHeld(m_intakeCommand);
   }
