@@ -10,6 +10,7 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCommand extends CommandBase {
   /** Creates a new IntakeCommand. */
   private IntakeSubsystem m_intakeSubsystem;
+  private double initialEncoderPosition;
   public IntakeCommand(IntakeSubsystem intakeSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_intakeSubsystem = intakeSubsystem;
@@ -18,7 +19,9 @@ public class IntakeCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    initialEncoderPosition = m_intakeSubsystem.getEncoderPosition();
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -28,11 +31,17 @@ public class IntakeCommand extends CommandBase {
 
   // Called once the command ends or is interrupted.
   @Override
-  public void end(boolean interrupted) {}
+  public void end(boolean interrupted) {
+    m_intakeSubsystem.spinIntake(0);
+  }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    if (m_intakeSubsystem.getEncoderPosition() - initialEncoderPosition >= 4096/4) {
+      System.out.println(initialEncoderPosition);
+      return true;
+    }
     return false;
   }
 }
