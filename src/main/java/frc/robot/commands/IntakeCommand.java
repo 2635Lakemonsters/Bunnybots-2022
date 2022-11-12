@@ -33,13 +33,19 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_intakeSubsystem.spinIntake(0);
+    System.out.println("from IntakeCommand.end()");
+    System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+    System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
+    System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+    System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
     if (m_intakeSubsystem.getEncoderPosition() - initialEncoderPosition >= 4096/4) {
-      System.out.println(initialEncoderPosition);
+      // System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+      // System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
       return true;
     }
     return false;
