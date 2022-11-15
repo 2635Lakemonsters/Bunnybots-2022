@@ -31,6 +31,7 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    System.out.println("global IP = " + m_intakeSubsystem.getGlobalInitialPosition());
     if (isButtonReleasedYet == false) { // spin freely
       m_intakeSubsystem.spinIntake(-0.1);
       System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
