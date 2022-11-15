@@ -42,13 +42,14 @@ public class IntakeSubsystem extends SubsystemBase {
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println("IntakeSubsystem.periodic(): position: " + intakeMotor.getSelectedSensorPosition(Constants.kPIDLoopIdx));
     
   }
 
   public void spinIntake(double speed) {
     intakeMotor.set(ControlMode.PercentOutput, speed);
+    System.out.println(getEncoderPosition());
   }
+
 
   public double getEncoderPosition() {
     return intakeMotor.getSelectedSensorPosition(Constants.kPIDLoopIdx);

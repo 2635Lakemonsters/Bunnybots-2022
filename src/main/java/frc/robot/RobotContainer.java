@@ -33,7 +33,11 @@ public class RobotContainer {
   // COMMANDS
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem);
-  private final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem);
+  
+  private final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem, false);
+  private final IntakeCommand m_intakeCommand_doCorrection = new IntakeCommand(m_intakeSubsystem, true);
+
+
   // JOYSTICKS
   public static Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK_CHANNEL);
   public static Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
@@ -55,6 +59,7 @@ public class RobotContainer {
     Button intakeButton = new JoystickButton(rightJoystick, Constants.R_SPIN_INTAKE_FORWARD_BUTTON);
 
     intakeButton.whenHeld(m_intakeCommand);
+    intakeButton.whenReleased(m_intakeCommand_doCorrection);
 
   }
 
