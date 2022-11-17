@@ -31,18 +31,20 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    System.out.println("global IP = " + m_intakeSubsystem.getGlobalInitialPosition());
+    // System.out.println("global IP = " + m_intakeSubsystem.getGlobalInitialPosition());
+    double currentEP = m_intakeSubsystem.getEncoderPosition();
     if (isButtonReleasedYet == false) { // spin freely
-      m_intakeSubsystem.spinIntake(-0.1);
+      m_intakeSubsystem.spinIntake(-0.7);
       System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
       System.out.println("IntakeCommand.execute(): initialPosition: " + initialEncoderPosition);
 
     } else if (isButtonReleasedYet == true) { // correct to vertical position
-      m_intakeSubsystem.spinIntake(-0.1);
+      m_intakeSubsystem.spinIntake(-0.2);
 
-      if (Math.abs(m_intakeSubsystem.getEncoderPosition()) - Math.abs(initialEncoderPosition) >= 4096/2) {
-        System.out.println("initialEncoderPosition: " + initialEncoderPosition);
-        System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+      if ((2048 - (Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())) % 2048) <= 250) {
+        //System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+        //System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+        System.out.println("GIP position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         end(true);
       }
     }
@@ -53,9 +55,13 @@ public class IntakeCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_intakeSubsystem.spinIntake(0);
+    if (interrupted == true) {
+      m_intakeSubsystem.spinIntake(0);
+    }
     System.out.println("from IntakeCommand.end()");
     System.out.println("initialEncoderPosition: " + initialEncoderPosition);
     System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+    return;
   }
 
   // Returns true when the command should end.

@@ -34,7 +34,7 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem);
   
-  private final IntakeCommand m_intakeCommand = new IntakeCommand(m_intakeSubsystem, false);
+  private final IntakeCommand m_intakeCommandFreeSpin = new IntakeCommand(m_intakeSubsystem, false);
   private final IntakeCommand m_intakeCommand_doCorrection = new IntakeCommand(m_intakeSubsystem, true);
 
 
@@ -58,7 +58,7 @@ public class RobotContainer {
   private void configureButtonBindings() {
     Button intakeButton = new JoystickButton(rightJoystick, Constants.R_SPIN_INTAKE_FORWARD_BUTTON);
 
-    intakeButton.whenHeld(m_intakeCommand);
+    intakeButton.whenHeld(m_intakeCommandFreeSpin);
     intakeButton.whenReleased(m_intakeCommand_doCorrection);
 
   }

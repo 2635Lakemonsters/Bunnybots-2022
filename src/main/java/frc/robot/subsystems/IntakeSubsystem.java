@@ -60,7 +60,7 @@ public class IntakeSubsystem extends SubsystemBase {
 
   public void spinIntake(double speed) {
     intakeMotor.set(ControlMode.PercentOutput, speed);
-    System.out.println(getEncoderPosition());
+    //System.out.println(getEncoderPosition());
   }
 
 
