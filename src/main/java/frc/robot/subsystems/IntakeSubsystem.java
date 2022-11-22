@@ -41,7 +41,7 @@ public class IntakeSubsystem extends SubsystemBase {
 		// intakeMotor.configNominalOutputReverse(0, Constants.kTimeoutMs);
 		// intakeMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
 		// intakeMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
-    globalInitialPosition = intakeMotor.getSelectedSensorPosition();
+    globalInitialPosition = intakeMotor.getSelectedSensorPosition() + 1024; //if you want to return to vert, get rid of 1024
   }
 
   public double getGlobalInitialPosition() {

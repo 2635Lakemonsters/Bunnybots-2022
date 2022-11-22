@@ -44,7 +44,7 @@ public class IntakeCommand extends CommandBase {
       if ((2048 - (Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())) % 2048) <= 250) {
         //System.out.println("initialEncoderPosition: " + initialEncoderPosition);
         //System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
-        System.out.println("GIP position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        //System.out.println("GIP position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         end(true);
       }
     }
