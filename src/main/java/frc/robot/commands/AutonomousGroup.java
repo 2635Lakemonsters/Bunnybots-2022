@@ -17,10 +17,10 @@ public class AutonomousGroup extends SequentialCommandGroup {
   public AutonomousGroup(DriveTrainSubsystem driveTrainSubsystem, IntakeSubsystem intakeSubsystem) {
 
     addCommands(
-      new DriveTrainCommand(driveTrainSubsystem)
+      new DriveTrainCommand(driveTrainSubsystem).withTimeout(5)
       );
     System.out.println("AutonomousGroup constructor");
-    // Add your commands in the addCommands() call, e.g.
+    // Add your commands in the addCommands() call, e.g.  
     // addCommands(new FooCommand(), new BarCommand());
     // addCommands(new DriveTrainCommand.withTimeout(2));
   }

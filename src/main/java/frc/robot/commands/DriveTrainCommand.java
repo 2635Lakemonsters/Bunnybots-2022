@@ -4,6 +4,9 @@
 
 package frc.robot.commands;
 
+import com.revrobotics.ColorSensorV3;
+
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrainSubsystem;
@@ -11,7 +14,9 @@ import frc.robot.subsystems.DriveTrainSubsystem;
 public class DriveTrainCommand extends CommandBase {
   /** Creates a new DriveTrainCommand. */
   private DriveTrainSubsystem m_driveSubsystem;
-  
+  private final I2C.Port i2cPort = I2C.Port.kOnboard;
+  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+
   public DriveTrainCommand(DriveTrainSubsystem driveSubsystem) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveSubsystem = driveSubsystem;
@@ -30,8 +35,10 @@ public class DriveTrainCommand extends CommandBase {
   @Override
   public void execute() {
     m_driveSubsystem.setSpeed(Constants.AUTO_SPEED);
-    System.out.println("reached execute() !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-
+    System.out.println("distance = " + m_colorSensor.getProximity());
+    if (m_colorSensor.getProximity() >= 1000) {
+     this.end(true);
+    }
   }
 
   // Called once the command ends or is interrupted.
