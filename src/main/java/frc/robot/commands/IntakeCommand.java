@@ -35,8 +35,8 @@ public class IntakeCommand extends CommandBase {
     double currentEP = m_intakeSubsystem.getEncoderPosition();
     if (isButtonReleasedYet == false) { // spin freely
       m_intakeSubsystem.spinIntake(-0.7);
-      System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
-      System.out.println("IntakeCommand.execute(): initialPosition: " + initialEncoderPosition);
+      // System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
+      // System.out.println("IntakeCommand.execute(): initialPosition: " + initialEncoderPosition);
 
     } else if (isButtonReleasedYet == true) { // correct to vertical position
       m_intakeSubsystem.spinIntake(-0.2);
@@ -58,9 +58,9 @@ public class IntakeCommand extends CommandBase {
     if (interrupted == true) {
       m_intakeSubsystem.spinIntake(0);
     }
-    System.out.println("from IntakeCommand.end()");
-    System.out.println("initialEncoderPosition: " + initialEncoderPosition);
-    System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+    //System.out.println("from IntakeCommand.end()");
+    //System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+    //System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
     return;
   }
 
