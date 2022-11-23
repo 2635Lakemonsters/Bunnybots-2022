@@ -30,5 +30,6 @@ public final class Constants {
     public static final boolean kMotorInvert = false;
     
     //speed for driveTrainCommand autonomous 
-    public static final double AUTO_SPEED = -0.3;
+    public static final double AUTO_SPEED_1 = -0.3;
+    public static final double AUTO_SPEED_2 = -0.2;
 }

@@ -4,8 +4,9 @@
 
 package frc.robot.commands;
 
+import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
-import frc.robot.commands.DriveTrainCommand;
+import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -17,11 +18,18 @@ public class AutonomousGroup extends SequentialCommandGroup {
   public AutonomousGroup(DriveTrainSubsystem driveTrainSubsystem, IntakeSubsystem intakeSubsystem) {
 
     addCommands(
-      new DriveTrainCommand(driveTrainSubsystem).withTimeout(5)
-      );
-    System.out.println("AutonomousGroup constructor");
-    // Add your commands in the addCommands() call, e.g.  
-    // addCommands(new FooCommand(), new BarCommand());
-    // addCommands(new DriveTrainCommand.withTimeout(2));
+      //drive fast and spin freely, end after 3 sec
+      new ParallelCommandGroup(
+        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1), 
+        new IntakeCommand(intakeSubsystem, false)
+      ).withTimeout(3), 
+      //drive slow and correct spin, end when last command ends
+      new ParallelCommandGroup(
+        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2), 
+        new IntakeCommand(intakeSubsystem, true)
+      )
+    );
+
   }
+
 }

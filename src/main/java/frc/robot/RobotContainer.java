@@ -39,13 +39,13 @@ public class RobotContainer {
 
   // COMMANDS
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem);
+  private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem, 0);
   
   private final IntakeCommand m_intakeCommandFreeSpin = new IntakeCommand(m_intakeSubsystem, false);
   private final IntakeCommand m_intakeCommand_doCorrection = new IntakeCommand(m_intakeSubsystem, true);
 
   //Auto Sequences
-  private final AutonomousGroup m_autonomousGroup = new AutonomousGroup(m_drivetrainSubsystem, m_intakeSubsystem);
+  private final AutonomousGroup m_autonomousGroup = new AutonomousGroup(m_drivetrainSubsystem,  m_intakeSubsystem);
 
   // JOYSTICKS
   public static Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK_CHANNEL);
