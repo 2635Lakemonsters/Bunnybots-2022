@@ -26,7 +26,10 @@ public class ElevatorUpCommand extends CommandBase {
 
   // Called when the command is initially scheduled.
   @Override
-  public void initialize() {}
+  public void initialize() {
+    System.out.println("up command button pressed: is going to mid TODO");
+    
+  }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
@@ -45,16 +48,19 @@ public class ElevatorUpCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (isGoingToMid){
-      if (atMid || atTop){
+    if (isGoingToMid){  //is it going to mid
+      if (atMid || atTop){ //region 1 or if goes over
+        System.out.println("mid switch hit");
+        System.out.println("top2 switch hit");
         return true;
-      } else if (!atMid || !atTop){
+      } else{
         return false;
       }
     } else if (!isGoingToMid){
       if (atTop){
+        System.out.println("top1 switch hit");
         return true;
-      } else if (!atTop){
+      } else {
         return false;
       }
     }

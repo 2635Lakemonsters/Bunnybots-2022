@@ -20,9 +20,9 @@ public class ElevatorSubsystem extends SubsystemBase {
 
   public ElevatorSubsystem() { 
     // Initializes a DigitalInput on DIO 0
-    bottomLimitSwitch = new DigitalInput(Constants.BOTTOM_LIMIT_SWITCH);
-    middleLimitSwitch = new DigitalInput(Constants.MIDDLE_LIMIT_SWITCH);
-    topLimitSwitch = new DigitalInput(Constants.TOP_LIMIT_SWITCH);
+    bottomLimitSwitch = new DigitalInput(Constants.BOTTOM_LIMIT_SWITCH_CHANNEL);
+    middleLimitSwitch = new DigitalInput(Constants.MIDDLE_LIMIT_SWITCH_CHANNEL);
+    topLimitSwitch = new DigitalInput(Constants.TOP_LIMIT_SWITCH_CHANNEL);
 
     elevatorMotor = new WPI_TalonSRX(Constants.ELEVATOR_MOTOR_CHANNEL);
     elevatorMotor.configFactoryDefault();

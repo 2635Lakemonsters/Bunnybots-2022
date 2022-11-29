@@ -20,7 +20,7 @@ public final class Constants {
     public static final int BACK_LEFT_DRIVE_CHANNEL = 5;
     public static final int INTAKE_MOTOR_CHANNEL = 2;
     //need to find ID, NOT ACUTALLY 8
-    public static final int ELEVATOR_MOTOR_CHANNEL = 8;
+    public static final int ELEVATOR_MOTOR_CHANNEL = 1;
 
     //joystick and buttons
     public static final int RIGHT_JOYSTICK_CHANNEL = 0;
@@ -31,9 +31,9 @@ public final class Constants {
     public static final int ELEVATOR_FULL_UP_BUTTON = 6;
     
     //limit switch, will be update based on DIO ID
-    public static final int BOTTOM_LIMIT_SWITCH = 9;
-    public static final int MIDDLE_LIMIT_SWITCH = 10;
-    public static final int TOP_LIMIT_SWITCH = 11;
+    public static final int BOTTOM_LIMIT_SWITCH_CHANNEL = 0;
+    public static final int MIDDLE_LIMIT_SWITCH_CHANNEL = 1;
+    public static final int TOP_LIMIT_SWITCH_CHANNEL = 2;
 
     // Constants for intake subsystem
     public static final int kPIDLoopIdx = 0;
