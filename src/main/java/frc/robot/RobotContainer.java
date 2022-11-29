@@ -11,9 +11,12 @@ import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
 import frc.robot.commands.AutonomousGroup;
 import frc.robot.commands.DriveTrainCommand;
+import frc.robot.commands.ElevatorDownCommand;
+import frc.robot.commands.ElevatorUpCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
@@ -34,15 +37,21 @@ public class RobotContainer {
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
   private final DriveTrainSubsystem m_drivetrainSubsystem = new DriveTrainSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
+  private final ElevatorSubsystem m_elevatorSubsytem = new ElevatorSubsystem();
   //shuffleboard auto chooser
   private SendableChooser<CommandGroupBase> m_autoChooser;
 
   // COMMANDS
+    //these command declarations don't mean anything, they aren't called in robot container
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem, 0);
-  
+    //these mean things, as they are called in robot container off different events
   private final IntakeCommand m_intakeCommandFreeSpin = new IntakeCommand(m_intakeSubsystem, false);
   private final IntakeCommand m_intakeCommand_doCorrection = new IntakeCommand(m_intakeSubsystem, true);
+    //elevator commands, half and full and down
+  private final ElevatorUpCommand m_elevHalfUpCommand = new ElevatorUpCommand(m_elevatorSubsytem, true);
+  private final ElevatorUpCommand m_elevFullUpCommand = new ElevatorUpCommand(m_elevatorSubsytem, false);
+  private final ElevatorDownCommand m_elevDownCommand = new ElevatorDownCommand(m_elevatorSubsytem);
 
   //Auto Sequences
   private final AutonomousGroup m_autonomousGroup = new AutonomousGroup(m_drivetrainSubsystem,  m_intakeSubsystem);
@@ -67,10 +76,16 @@ public class RobotContainer {
    */
   private void configureButtonBindings() {
     Button intakeButton = new JoystickButton(rightJoystick, Constants.R_SPIN_INTAKE_FORWARD_BUTTON);
-
+    Button elevHalfUpButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_HALF_UP_BUTTON);
+    Button elevFullUpButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_FULL_UP_BUTTON);
+    Button elevDownButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_DOWN_BUTTON);
+    //free spins when intakeButton is held, corrects with a slower speed when intakeButton is released
     intakeButton.whenHeld(m_intakeCommandFreeSpin);
     intakeButton.whenReleased(m_intakeCommand_doCorrection);
-
+    //does elevator commands depending on what button pressed
+    elevHalfUpButton.whenPressed(m_elevHalfUpCommand);
+    elevFullUpButton.whenPressed(m_elevFullUpCommand);
+    elevDownButton.whenPressed(m_elevDownCommand);
   }
 
   /**
