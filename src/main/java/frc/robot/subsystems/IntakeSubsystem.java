@@ -16,6 +16,10 @@ public class IntakeSubsystem extends SubsystemBase {
   /** Creates a new IntakeSubsystem. */
   private WPI_TalonSRX intakeMotor;
   
+  //will reset when you re-deploy, but not when re-enabled
+  //always set brissles to vertical when deployed
+  private static double globalInitialPosition; //"The real one this time" -Megan Tian 11/14/2022
+
   public IntakeSubsystem() {
     intakeMotor = new WPI_TalonSRX(Constants.INTAKE_MOTOR_CHANNEL);
     intakeMotor.configFactoryDefault();
@@ -37,18 +41,28 @@ public class IntakeSubsystem extends SubsystemBase {
 		// intakeMotor.configNominalOutputReverse(0, Constants.kTimeoutMs);
 		// intakeMotor.configPeakOutputForward(1, Constants.kTimeoutMs);
 		// intakeMotor.configPeakOutputReverse(-1, Constants.kTimeoutMs);
+    globalInitialPosition = intakeMotor.getSelectedSensorPosition() + 1024; //if you want to return to vert, get rid of 1024
+  }
+
+  public double getGlobalInitialPosition() {
+    return globalInitialPosition;
+  }
+
+  public void setGlobalInitialPosition(double newGlobalInitialPosition) {
+    globalInitialPosition = newGlobalInitialPosition;
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
-    System.out.println(intakeMotor.getSelectedSensorPosition(Constants.kPIDLoopIdx));
     
   }
 
   public void spinIntake(double speed) {
     intakeMotor.set(ControlMode.PercentOutput, speed);
+    //System.out.println(getEncoderPosition());
   }
+
 
   public double getEncoderPosition() {
     return intakeMotor.getSelectedSensorPosition(Constants.kPIDLoopIdx);

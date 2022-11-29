@@ -10,9 +10,14 @@ import frc.robot.subsystems.IntakeSubsystem;
 public class IntakeCommand extends CommandBase {
   /** Creates a new IntakeCommand. */
   private IntakeSubsystem m_intakeSubsystem;
-  private double initialEncoderPosition;
-  public IntakeCommand(IntakeSubsystem intakeSubsystem) {
+  public double initialEncoderPosition;
+
+  private boolean isButtonReleasedYet; 
+
+  public IntakeCommand(IntakeSubsystem intakeSubsystem, boolean isButtonReleasedYet) {
     // Use addRequirements() here to declare subsystem dependencies.
+    this.isButtonReleasedYet = isButtonReleasedYet; 
+
     m_intakeSubsystem = intakeSubsystem;
     addRequirements(m_intakeSubsystem);
   }
@@ -26,22 +31,42 @@ public class IntakeCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_intakeSubsystem.spinIntake(0.4);
+    // System.out.println("global IP = " + m_intakeSubsystem.getGlobalInitialPosition());
+    double currentEP = m_intakeSubsystem.getEncoderPosition();
+    if (isButtonReleasedYet == false) { // spin freely
+      m_intakeSubsystem.spinIntake(-0.7);
+      // System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
+      // System.out.println("IntakeCommand.execute(): initialPosition: " + initialEncoderPosition);
+
+    } else if (isButtonReleasedYet == true) { // correct to vertical position
+      m_intakeSubsystem.spinIntake(-0.2);
+
+      if ((2048 - (Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())) % 2048) <= 250) {
+        //System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+        //System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+        //System.out.println("GIP position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        end(true);
+      }
+    }
+
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
     m_intakeSubsystem.spinIntake(0);
+    if (interrupted == true) {
+      m_intakeSubsystem.spinIntake(0);
+    }
+    //System.out.println("from IntakeCommand.end()");
+    //System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+    //System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+    return;
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_intakeSubsystem.getEncoderPosition() - initialEncoderPosition >= 4096/4) {
-      System.out.println(initialEncoderPosition);
-      return true;
-    }
     return false;
   }
 }
