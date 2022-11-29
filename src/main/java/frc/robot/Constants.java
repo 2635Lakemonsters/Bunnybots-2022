@@ -46,7 +46,7 @@ public final class Constants {
     public static final double AUTO_SPEED_2 = -0.2;
 
     //speeds for ElevatorUpCommand and ElevatorDownCommand, likely to change
-    public static final double ELEVATOR_UP_SPEED = 0.1;
-    public static final double ELEVATOR_DOWN_SPEED = -0.1;
+    public static final double ELEVATOR_UP_SPEED = 0.2;
+    public static final double ELEVATOR_DOWN_SPEED = -0.2;
     
 }
