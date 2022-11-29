@@ -61,8 +61,10 @@ public class RobotContainer {
   public static Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
 
 
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    
     // Configure the button bindings
     configureButtonBindings();
     
@@ -96,11 +98,15 @@ public class RobotContainer {
   public Command getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
 
-    m_autoChooser = new SendableChooser<>();
-    m_autoChooser.addOption("Drive Straight", m_autonomousGroup);
-    SmartDashboard.putData("AutoMode", m_autoChooser);
-    
-    // return m_autoChooser.getSelected();
-    return m_autonomousGroup;
+    SendableChooser<Command> m_autoChooser = new SendableChooser<>();
+    m_autoChooser.setDefaultOption("AUTO", m_autoCommand);//establish default auto option
+
+    // create other options in SmartDashBoard
+    m_autoChooser.addOption("FreeSpin", m_intakeCommandFreeSpin);
+    m_autoChooser.addOption("doCorrection", m_intakeCommand_doCorrection);
+
+    SmartDashboard.putData("Auto Chooser", m_autoChooser);
+
+    return m_autoChooser.getSelected();
   }
 }
