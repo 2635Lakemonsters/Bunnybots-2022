@@ -25,10 +25,14 @@ public final class Constants {
     //joystick and buttons
     public static final int RIGHT_JOYSTICK_CHANNEL = 0;
     public static final int LEFT_JOYSTICK_CHANNEL = 1;
+    //right buttons
     public static final int R_SPIN_INTAKE_FORWARD_BUTTON = 2;
     public static final int ELEVATOR_DOWN_BUTTON = 3;
     public static final int ELEVATOR_HALF_UP_BUTTON = 4;
     public static final int ELEVATOR_FULL_UP_BUTTON = 6;
+    //left buttons
+    public static final int NAVX_DRIVE_FORWARD_BUTTON = 3;
+    public static final int NAVX_SET_ZERO_BUTTON = 4;
     
     //limit switch, will be update based on DIO ID
     public static final int BOTTOM_LIMIT_SWITCH_CHANNEL = 0;
