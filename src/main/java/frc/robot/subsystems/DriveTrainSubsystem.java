@@ -19,7 +19,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
   private TalonSRX backRightMotor;
   private TalonSRX frontLeftMotor;
   private TalonSRX backLeftMotor;
-  private double speed = 0;
+  private double leftSpeed = 0;
+  private double rightSpeed = 0;
   /** Creates a new DriveTrainSubsystem. */
   public DriveTrainSubsystem() {
     frontRightMotor = new TalonSRX(Constants.FRONT_RIGHT_DRIVE_CHANNEL);
@@ -38,16 +39,33 @@ public class DriveTrainSubsystem extends SubsystemBase {
       frontRightMotor.set(ControlMode.PercentOutput, RobotContainer.rightJoystick.getY());
       frontLeftMotor.set(ControlMode.PercentOutput, -RobotContainer.leftJoystick.getY());
     } else if(Robot.isInAuto){
-      frontRightMotor.set(ControlMode.PercentOutput, speed);
-      frontLeftMotor.set(ControlMode.PercentOutput, -speed);
+      //uses rightsidespeed parameter and leftsidespeed parameter to set the speed
+      //set front right to right sppeed param
+      //set front left top left speeed param
+
+
+      //if turn test isn't being used or called
+      frontRightMotor.set(ControlMode.PercentOutput, rightSpeed);
+      frontLeftMotor.set(ControlMode.PercentOutput, leftSpeed);
+      // or turn test is being called 
+
+      
     }
   }
 
-  public double getSpeed() {
-    return speed;
-  }
+  // public double getSpeed() {
+  //   return speed;
+  // }
 
   public void setSpeed(double newSpeed) {
-    speed = newSpeed;
+    //for going straight
+    rightSpeed = newSpeed;
+    leftSpeed = -newSpeed;
+  }
+
+  public void setTurningSpeed(double newTurningSpeed){
+    //for turning left or right based on if param is neg/pos
+    rightSpeed = newTurningSpeed;
+    leftSpeed = newTurningSpeed;
   }
 }

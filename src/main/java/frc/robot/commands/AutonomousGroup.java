@@ -19,16 +19,19 @@ public class AutonomousGroup extends SequentialCommandGroup {
 
     addCommands(
       //drive fast and spin freely, end after 3 sec
-      new ParallelCommandGroup(
-        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1), 
-        new IntakeCommand(intakeSubsystem, false)
-      ).withTimeout(3), 
-      //drive slow and correct spin, end when last command ends
-      new ParallelCommandGroup(
-        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2), 
-        new IntakeCommand(intakeSubsystem, true)
-      )
+      // new ParallelCommandGroup(
+      //   new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1), 
+      //   new IntakeCommand(intakeSubsystem, false)
+      // ).withTimeout(3), 
+      // //drive slow and correct spin, end when last command ends
+      // new ParallelCommandGroup(
+      //   new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2), 
+      //   new IntakeCommand(intakeSubsystem, true)
+      // ), 
+      //turn
+      new RightAngleTurnTest(driveTrainSubsystem, Constants.TURNING_SPEED)
     );
+
 
   }
 

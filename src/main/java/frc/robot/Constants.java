@@ -44,6 +44,7 @@ public final class Constants {
     //speed for driveTrainCommand autonomous 
     public static final double AUTO_SPEED_1 = -0.3;
     public static final double AUTO_SPEED_2 = -0.2;
+    public static final double TURNING_SPEED = 0.1;
 
     //speeds for ElevatorUpCommand and ElevatorDownCommand, likely to change
     public static final double ELEVATOR_UP_SPEED = 0.2;
