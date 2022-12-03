@@ -16,12 +16,15 @@ public class DriveTrainCommand extends CommandBase {
   private DriveTrainSubsystem m_driveSubsystem;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-  private double autoSpeed;
+
+  private double leftAutoSpeed;
+  private double rightAutoSpeed;
   
-  public DriveTrainCommand(DriveTrainSubsystem driveSubsystem, double initAutoSpeed) {
-    // Use addRequirements() here to declare subsystem dependencies.
-    m_driveSubsystem = driveSubsystem;
-    autoSpeed = initAutoSpeed;
+  public DriveTrainCommand(DriveTrainSubsystem driveSubsystem, double l_initAutoSpeed, double r_initAutoSpeed) {
+    this.m_driveSubsystem = driveSubsystem;
+    this.leftAutoSpeed = l_initAutoSpeed;
+    this.rightAutoSpeed = r_initAutoSpeed; 
+
     addRequirements(driveSubsystem);
   }
 
@@ -35,7 +38,7 @@ public class DriveTrainCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveSubsystem.setSpeed(autoSpeed);
+    m_driveSubsystem.driveAuto(leftAutoSpeed, rightAutoSpeed);
     System.out.println("distance = " + m_colorSensor.getProximity());
     // if (m_colorSensor.getProximity() >= 110) {
     //   this.end(true);
@@ -45,7 +48,7 @@ public class DriveTrainCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveSubsystem.setSpeed(0);
+    m_driveSubsystem.driveAuto(0, 0);
   }
 
   // Returns true when the command should end.
