@@ -31,7 +31,7 @@ public final class Constants {
     public static final int ELEVATOR_HALF_UP_BUTTON = 4;
     public static final int ELEVATOR_FULL_UP_BUTTON = 6;
     //left buttons
-    public static final int NAVX_DRIVE_FORWARD_BUTTON = 3;
+    public static final int NAVX_DRIVE_FORWARD_BUTTON = 12;
     public static final int NAVX_SET_ZERO_BUTTON = 4;
     
     //limit switch, will be update based on DIO ID

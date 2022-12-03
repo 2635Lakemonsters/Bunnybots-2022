@@ -8,6 +8,7 @@ import com.ctre.phoenix.motorcontrol.ControlMode;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Constants;
+import frc.robot.Robot;
 import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
@@ -32,6 +33,7 @@ public class NavxDriveCommand extends CommandBase {
     //future note: keep track of targets inside command
     RobotContainer.ahrs.zeroYaw();
     targetYaw = RobotContainer.ahrs.getYaw();
+    Robot.isInAuto = true; //WARNING NEEDS TO BE FIXED!!!
   }
 
   // Called every time the scheduler runs while the command is scheduled.
@@ -39,16 +41,22 @@ public class NavxDriveCommand extends CommandBase {
   public void execute() {
     double currentYaw = RobotContainer.ahrs.getYaw();
     double yawError = currentYaw - targetYaw;
-    double diffPow = (1 / 180) * yawError;
+    double diffPow = (1.0 / 180.0) * yawError;
     if (diffPow > Constants.MAX_DIFF_POW) {
       diffPow = Constants.MAX_DIFF_POW;
-    } else if (diffPow < (-1 * Constants.MAX_DIFF_POW)) {
-      diffPow = (-1 * Constants.MAX_DIFF_POW);
+    } else if (diffPow < (-1.0 * Constants.MAX_DIFF_POW)) {
+      diffPow = (-1.0 * Constants.MAX_DIFF_POW);
     }
     double magnitude = Constants.AUTO_SPEED_2;
     double leftStickValue = magnitude + diffPow;
     double rightStickValue = magnitude - diffPow;
     m_driveSubsystem.setAutoSpeeds(leftStickValue, rightStickValue);
+    System.out.println("RSV: " + rightStickValue);
+    System.out.println("LSV: " + leftStickValue);
+    System.out.println("MAG: " + magnitude);
+    System.out.println("DIFFPOW: " + diffPow);
+    System.out.println("YAW ERROR: " + yawError);
+    System.out.println("TARG YAW: " + targetYaw);
   }
 
   // Called once the command ends or is interrupted.

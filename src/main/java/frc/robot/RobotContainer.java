@@ -19,6 +19,7 @@ import frc.robot.commands.ElevatorDownCommand;
 import frc.robot.commands.ElevatorUpCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.NavxDriveCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -69,6 +70,7 @@ public class RobotContainer {
   public static AHRS ahrs;
   public static PIDController turnController;
   public static  double rotateToAngleRate;
+  public final NavxDriveCommand m_navxDriveCommand = new NavxDriveCommand(m_drivetrainSubsystem, 0.2);
     
     /* The following PID Controller coefficients will need to be tuned */
     /* to match the dynamics of your drive system.  Note that the      */
@@ -127,6 +129,7 @@ public class RobotContainer {
     Button elevHalfUpButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_HALF_UP_BUTTON);
     Button elevFullUpButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_FULL_UP_BUTTON);
     Button elevDownButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_DOWN_BUTTON);
+    Button navxDriveButton = new JoystickButton(leftJoystick, Constants.NAVX_DRIVE_FORWARD_BUTTON);
     //free spins when intakeButton is held, corrects with a slower speed when intakeButton is released
     intakeButton.whenHeld(m_intakeCommandFreeSpin);
     intakeButton.whenReleased(m_intakeCommand_doCorrection);
@@ -134,6 +137,7 @@ public class RobotContainer {
     elevHalfUpButton.whenPressed(m_elevHalfUpCommand);
     elevFullUpButton.whenPressed(m_elevFullUpCommand);
     elevDownButton.whenPressed(m_elevDownCommand);
+    navxDriveButton.whenHeld(m_navxDriveCommand);
   }
 
   /**
