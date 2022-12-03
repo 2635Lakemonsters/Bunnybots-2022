@@ -52,6 +52,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
     }
   }
 
+
+
   public void setAutoSpeeds(double leftspeed, double rightspeed) {
     this.leftSpeedAuto = leftspeed;
     this.rightSpeedAuto = rightspeed; 

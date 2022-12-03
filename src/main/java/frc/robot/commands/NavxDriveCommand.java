@@ -28,7 +28,7 @@ public class NavxDriveCommand extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Curretn Heading before command = " + RobotContainer.ahrs.getYaw());
+    System.out.println("Current Heading before command = " + RobotContainer.ahrs.getYaw());
     //caution TO-DO WARNING this effects the whole navx
     //future note: keep track of targets inside command
     RobotContainer.ahrs.zeroYaw();

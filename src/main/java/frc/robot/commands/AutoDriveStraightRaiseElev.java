@@ -8,26 +8,26 @@ import edu.wpi.first.wpilibj2.command.ParallelCommandGroup;
 import edu.wpi.first.wpilibj2.command.SequentialCommandGroup;
 import frc.robot.Constants;
 import frc.robot.subsystems.DriveTrainSubsystem;
-import frc.robot.subsystems.IntakeSubsystem;
+import frc.robot.subsystems.ElevatorSubsystem;
 
 // NOTE:  Consider using this command inline, rather than writing a subclass.  For more
 // information, see:
 // https://docs.wpilib.org/en/stable/docs/software/commandbased/convenience-features.html
-public class AutonomousGroup extends SequentialCommandGroup {
+public class AutoDriveStraightRaiseElev extends SequentialCommandGroup {
   /** Creates a new AutonomousGroup. */
-  public AutonomousGroup(DriveTrainSubsystem driveTrainSubsystem, IntakeSubsystem intakeSubsystem) {
+  public AutoDriveStraightRaiseElev(DriveTrainSubsystem driveTrainSubsystem, ElevatorSubsystem elevatorSubsystem) {
 
     addCommands(
       //drive fast and spin freely, end after 3 sec
       new ParallelCommandGroup(
-        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1), 
-        new IntakeCommand(intakeSubsystem, false)
-      ).withTimeout(3), 
-      //drive slow and correct spin, end when last command ends
-      new ParallelCommandGroup(
-        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2, Constants.AUTO_SPEED_2), 
-        new IntakeCommand(intakeSubsystem, true)
-      )
+        new SequentialCommandGroup (
+          new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.STRAIGHT_TIMEOUT),
+          new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2, Constants.AUTO_SPEED_2)
+        ), 
+        new ElevatorUpCommand(elevatorSubsystem, true)
+      ), 
+      //score
+      new ElevatorUpCommand(elevatorSubsystem, false)
     );
 
   }

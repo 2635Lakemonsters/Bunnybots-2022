@@ -8,52 +8,56 @@ import com.revrobotics.ColorSensorV3;
 
 import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
+import frc.robot.RobotContainer;
 import frc.robot.subsystems.DriveTrainSubsystem;
 
-public class DriveTrainCommand extends CommandBase {
+public class AutoTurn extends CommandBase {
   /** Creates a new DriveTrainCommand. */
   private DriveTrainSubsystem m_driveSubsystem;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-
-  private double leftAutoSpeed;
-  private double rightAutoSpeed;
+  private double autoTurningSpeed;
+  private boolean isGoingRight;
+  private double initYaw;
+  private double currentYaw;
   
-  public DriveTrainCommand(DriveTrainSubsystem driveSubsystem, double l_initAutoSpeed, double r_initAutoSpeed) {
-    this.m_driveSubsystem = driveSubsystem;
-    this.leftAutoSpeed = l_initAutoSpeed;
-    this.rightAutoSpeed = r_initAutoSpeed; 
-
+  public AutoTurn(DriveTrainSubsystem driveSubsystem, double initTurningSpeed, boolean isGoingRight) {
+    // Use addRequirements() here to declare subsystem dependencies.
+    m_driveSubsystem = driveSubsystem;
+    autoTurningSpeed = initTurningSpeed;
+    initYaw = RobotContainer.ahrs.getYaw();
     addRequirements(driveSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
-    System.out.println("Drivetrain command initialize()");
+    System.out.println("RightAngleTurnTest command initialize()");
     // m_driveSubsystem.setSpeed(Constants.AUTO_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    m_driveSubsystem.driveAuto(leftAutoSpeed, rightAutoSpeed);
-    System.out.println("distance = " + m_colorSensor.getProximity());
-    // if (m_colorSensor.getProximity() >= 110) {
-    //   this.end(true);
-    // }
+    if (isGoingRight){
+      m_driveSubsystem.setAutoSpeeds(autoTurningSpeed, -autoTurningSpeed);
+    } else {
+      m_driveSubsystem.setAutoSpeeds(-autoTurningSpeed, autoTurningSpeed);
+    }
+    currentYaw = RobotContainer.ahrs.getYaw();
   }
 
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveSubsystem.driveAuto(0, 0);
+    m_driveSubsystem.setAutoSpeeds(0,0);
   }
 
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_colorSensor.getProximity() >= 100) {
+    if (Math.abs(currentYaw - initYaw) >= 90){
       return true;
     }
     return false;
