@@ -49,7 +49,7 @@ public class RobotContainer {
   // COMMANDS
     //these command declarations don't mean anything, they aren't called in robot container
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
-  private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem, 0);
+  private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem, 0, 0);
     //these mean things, as they are called in robot container off different events
   private final IntakeCommand m_intakeCommandFreeSpin = new IntakeCommand(m_intakeSubsystem, false);
   private final IntakeCommand m_intakeCommand_doCorrection = new IntakeCommand(m_intakeSubsystem, true);
@@ -106,7 +106,7 @@ public class RobotContainer {
     } catch (RuntimeException ex ) {
       DriverStation.reportError("Error instantiating navX MXP:  " + ex.getMessage(), true);
     }
-    turnController = new PIDController(kP, kI, kD, kF);
+    // turnController = new PIDController(kP, kI, kD, kF);
 
     /**will have to fix this documentation**/
     // turnController.setInputRange(-180.0f,  180.0f);
