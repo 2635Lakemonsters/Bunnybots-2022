@@ -39,10 +39,10 @@ public class NavxDriveCommand extends CommandBase {
     double currentYaw = RobotContainer.ahrs.getYaw();
     double yawError = currentYaw - targetYaw;
     double diffPow = (1 / 180) * yawError;
-    if (diffPow > 0.5) {
-      diffPow = 0.5;
-    } else if (diffPow < -0.5) {
-      diffPow = -0.5;
+    if (diffPow > Constants.MAX_DIFF_POW) {
+      diffPow = Constants.MAX_DIFF_POW;
+    } else if (diffPow < (-1 * Constants.MAX_DIFF_POW)) {
+      diffPow = (-1 * Constants.MAX_DIFF_POW);
     }
     double magnitude = Constants.AUTO_SPEED_2;
     double leftStickValue = magnitude + diffPow;
