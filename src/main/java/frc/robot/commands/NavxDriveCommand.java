@@ -48,7 +48,7 @@ public class NavxDriveCommand extends CommandBase {
     double magnitude = Constants.AUTO_SPEED_2;
     double leftStickValue = magnitude + diffPow;
     double rightStickValue = magnitude - diffPow;
-    DriveTrainSubsystem.setAutoSpeeds(leftStickValue, rightStickValue);
+    m_driveSubsystem.setAutoSpeeds(leftStickValue, rightStickValue);
   }
 
   // Called once the command ends or is interrupted.
