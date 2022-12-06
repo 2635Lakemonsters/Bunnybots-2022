@@ -64,4 +64,6 @@ public final class Constants {
     public static final boolean ELEV_HALF_UP = true;
     public static final boolean ELEV_FULL_UP = false;
     
+    //for when intake is called in auto
+    public static final boolean SPIN_FREE = false;
 }
