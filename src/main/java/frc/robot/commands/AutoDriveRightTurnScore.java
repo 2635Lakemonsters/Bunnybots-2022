@@ -21,11 +21,11 @@ public class AutoDriveRightTurnScore extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup(
         new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.TURN_TIMEOUT),
-        new ElevatorUpCommand(elevatorSubsystem, true)
+        new ElevatorUpCommand(elevatorSubsystem, Constants.ELEV_HALF_UP)
       ),
       new AutoTurn(driveTrainSubsystem, Constants.TURNING_SPEED, true),//need to test turning speed
       new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2, Constants.AUTO_SPEED_2),
-      new ElevatorUpCommand(elevatorSubsystem, false)
+      new ElevatorUpCommand(elevatorSubsystem, Constants.ELEV_FULL_UP)
     );
   }
 }

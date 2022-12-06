@@ -18,29 +18,30 @@ public class AutoTurn extends CommandBase {
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
   private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private double autoTurningSpeed;
-  private boolean isGoingRight;
-  private double initYaw;
+  private boolean m_isGoingRight;
   private double currentYaw;
   
   public AutoTurn(DriveTrainSubsystem driveSubsystem, double initTurningSpeed, boolean isGoingRight) {
     // Use addRequirements() here to declare subsystem dependencies.
     m_driveSubsystem = driveSubsystem;
     autoTurningSpeed = initTurningSpeed;
-    initYaw = RobotContainer.ahrs.getYaw();
+    m_isGoingRight = isGoingRight;
     addRequirements(driveSubsystem);
   }
 
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    RobotContainer.ahrs.zeroYaw();
     System.out.println("RightAngleTurnTest command initialize()");
+
     // m_driveSubsystem.setSpeed(Constants.AUTO_SPEED);
   }
 
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    if (isGoingRight){
+    if (m_isGoingRight){
       m_driveSubsystem.setAutoSpeeds(autoTurningSpeed, -autoTurningSpeed);
     } else {
       m_driveSubsystem.setAutoSpeeds(-autoTurningSpeed, autoTurningSpeed);
@@ -57,7 +58,7 @@ public class AutoTurn extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (Math.abs(currentYaw - initYaw) >= 90){
+    if (Math.abs(currentYaw) >= 90){ // adjust degree turn depending on speed/testing 
       return true;
     }
     return false;

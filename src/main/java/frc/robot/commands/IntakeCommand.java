@@ -17,6 +17,7 @@ public class IntakeCommand extends CommandBase {
   public IntakeCommand(IntakeSubsystem intakeSubsystem, boolean isButtonReleasedYet) {
     // Use addRequirements() here to declare subsystem dependencies.
     this.isButtonReleasedYet = isButtonReleasedYet; 
+    //if isButtonReleasedYet 
 
     m_intakeSubsystem = intakeSubsystem;
     addRequirements(m_intakeSubsystem);

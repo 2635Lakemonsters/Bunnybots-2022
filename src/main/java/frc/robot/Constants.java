@@ -48,7 +48,7 @@ public final class Constants {
     //speed for driveTrainCommand autonomous 
     public static final double AUTO_SPEED_1 = -0.3;
     public static final double AUTO_SPEED_2 = -0.2;
-    public static final double TURNING_SPEED = 0.2;
+    public static final double TURNING_SPEED = 0.2; // adjust depending on overshoot turn
     public static final double MAX_DIFF_POW = 0.5;
     
     //speeds for ElevatorUpCommand and ElevatorDownCommand, likely to change
@@ -58,5 +58,10 @@ public final class Constants {
     //timeout Values for Auto
     public static final int TURN_TIMEOUT = 5;
     public static final int STRAIGHT_TIMEOUT = 3;
+
+    //boolean constants for elevator up command
+    //used in conjunction isGoingToMid
+    public static final boolean ELEV_HALF_UP = true;
+    public static final boolean ELEV_FULL_UP = false;
     
 }

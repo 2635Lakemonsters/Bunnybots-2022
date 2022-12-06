@@ -20,14 +20,17 @@ public class AutoDriveStraightRaiseElev extends SequentialCommandGroup {
     addCommands(
       //drive fast and spin freely, end after 3 sec
       new ParallelCommandGroup(
+        //drive train
         new SequentialCommandGroup (
           new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.STRAIGHT_TIMEOUT),
           new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2, Constants.AUTO_SPEED_2)
         ), 
-        new ElevatorUpCommand(elevatorSubsystem, true)
+        //store elev
+        new ElevatorUpCommand(elevatorSubsystem, Constants.ELEV_HALF_UP)
       ), 
+
       //score
-      new ElevatorUpCommand(elevatorSubsystem, false)
+      new ElevatorUpCommand(elevatorSubsystem, Constants.ELEV_FULL_UP)
     );
 
   }

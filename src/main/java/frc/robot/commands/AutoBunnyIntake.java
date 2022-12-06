@@ -23,6 +23,7 @@ public class AutoBunnyIntake extends SequentialCommandGroup {
         new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1),
         new IntakeCommand(intakeSubsystem, false)
       ).withTimeout(3) //need to test timeout
+      , new IntakeCommand(intakeSubsystem, false)
     );
   }
 }
