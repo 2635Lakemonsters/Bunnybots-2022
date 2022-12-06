@@ -21,8 +21,9 @@ public class AutoBunnyIntake extends SequentialCommandGroup {
     addCommands(
       new ParallelCommandGroup( //drive straight and spin intake for bunny
         new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1),
-        new IntakeCommand(intakeSubsystem, false)
-      ).withTimeout(3) //need to test timeout
+        new IntakeCommand(intakeSubsystem, Constants.SPIN_FREE)
+      ).withTimeout(3), //need to test timeout
+      new IntakeCommand(intakeSubsystem, !Constants.SPIN_FREE)
     );
   }
 }

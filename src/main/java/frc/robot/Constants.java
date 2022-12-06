@@ -59,4 +59,6 @@ public final class Constants {
     public static final int TURN_TIMEOUT = 5;
     public static final int STRAIGHT_TIMEOUT = 3;
     
+    //for when intake is called in auto
+    public static final boolean SPIN_FREE = false;
 }
