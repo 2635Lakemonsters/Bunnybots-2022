@@ -26,6 +26,7 @@ import frc.robot.commands.NavxDriveCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
+import frc.robot.subsystems.IntakePneumaticSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 import edu.wpi.first.wpilibj2.command.Command;
 import edu.wpi.first.wpilibj2.command.CommandBase;
@@ -47,6 +48,7 @@ public class RobotContainer {
   private final DriveTrainSubsystem m_drivetrainSubsystem = new DriveTrainSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
+  private final IntakePneumaticSubsystem m_IntakePneumaticSubsystem = new IntakePneumaticSubsystem();
   //shuffleboard auto chooser
   private SendableChooser<CommandGroupBase> m_autoChooser;
 

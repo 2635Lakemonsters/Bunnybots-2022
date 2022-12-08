@@ -66,4 +66,8 @@ public final class Constants {
     
     //for when intake is called in auto
     public static final boolean SPIN_FREE = false;
+
+    //channels for pneumatics
+    public static final int FORWARD_CHANNEL = 1;
+    public static final int REVERSE_CHANNEL = 2;
 }
