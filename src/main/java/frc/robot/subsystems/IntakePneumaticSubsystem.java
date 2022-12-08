@@ -21,12 +21,10 @@ public class IntakePneumaticSubsystem extends SubsystemBase {
 
     doubleSolenoid.set(kOff);
   }
-  public boolean isOpen()
-  {
+  public boolean isOpen() {
     if (doubleSolenoid.get() == kReverse) {
       return true;
-    } else
-    {
+    } else {
       return false;
     }
     

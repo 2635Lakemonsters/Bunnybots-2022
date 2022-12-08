@@ -70,4 +70,5 @@ public final class Constants {
     //channels for pneumatics
     public static final int FORWARD_CHANNEL = 1;
     public static final int REVERSE_CHANNEL = 2;
+    public static final int PNEUMATIC_BUTTON = 3;
 }

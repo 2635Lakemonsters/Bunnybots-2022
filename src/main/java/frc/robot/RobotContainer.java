@@ -22,6 +22,8 @@ import frc.robot.commands.ElevatorDownCommand;
 import frc.robot.commands.ElevatorUpCommand;
 import frc.robot.commands.ExampleCommand;
 import frc.robot.commands.IntakeCommand;
+import frc.robot.commands.IntakePneumaticCommandIn;
+import frc.robot.commands.IntakePneumaticCommandOut;
 import frc.robot.commands.NavxDriveCommand;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
@@ -63,6 +65,9 @@ public class RobotContainer {
   private final ElevatorUpCommand m_elevHalfUpCommand = new ElevatorUpCommand(m_elevatorSubsystem, true);
   private final ElevatorUpCommand m_elevFullUpCommand = new ElevatorUpCommand(m_elevatorSubsystem, false);
   private final ElevatorDownCommand m_elevDownCommand = new ElevatorDownCommand(m_elevatorSubsystem);
+    //pneumatic commands, in and out
+  private final IntakePneumaticCommandIn m_IntakePneumaticCommandIn = new IntakePneumaticCommandIn(m_IntakePneumaticSubsystem);
+  private final IntakePneumaticCommandOut m_IntakePneumaticCommandOut = new IntakePneumaticCommandOut(m_IntakePneumaticSubsystem);
 
   //Auto Sequences
   private final AutoDriveStraightRaiseElev m_autoDriveStraightRaiseElev = new AutoDriveStraightRaiseElev(m_drivetrainSubsystem, m_elevatorSubsystem);
@@ -138,6 +143,7 @@ public class RobotContainer {
     Button elevFullUpButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_FULL_UP_BUTTON);
     Button elevDownButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_DOWN_BUTTON);
     Button navxDriveButton = new JoystickButton(leftJoystick, Constants.NAVX_DRIVE_FORWARD_BUTTON);
+    Button pnuematicButton = new JoystickButton(leftJoystick, Constants.PNEUMATIC_BUTTON);
     //free spins when intakeButton is held, corrects with a slower speed when intakeButton is released
     intakeButton.whenHeld(m_intakeCommandFreeSpin);
     intakeButton.whenReleased(m_intakeCommand_doCorrection);
@@ -146,6 +152,13 @@ public class RobotContainer {
     elevFullUpButton.whenPressed(m_elevFullUpCommand);
     elevDownButton.whenPressed(m_elevDownCommand);
     navxDriveButton.whenHeld(m_navxDriveCommand);
+
+    // to review - darren + ocean
+    if (m_IntakePneumaticSubsystem.isOpen()) {
+      pnuematicButton.whenPressed(m_IntakePneumaticCommandIn);
+    } else {
+      pnuematicButton.whenPressed(m_IntakePneumaticCommandOut);
+    }
   }
 
   /**
