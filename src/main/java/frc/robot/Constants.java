@@ -33,6 +33,7 @@ public final class Constants {
     //left buttons
     public static final int NAVX_DRIVE_FORWARD_BUTTON = 12;
     public static final int NAVX_SET_ZERO_BUTTON = 4;
+    public static final int PRINT_TO_LOG_BUTTON = 8;
     
     //limit switch, will be update based on DIO ID
     public static final int BOTTOM_LIMIT_SWITCH_CHANNEL = 0;
