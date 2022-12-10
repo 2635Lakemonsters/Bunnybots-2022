@@ -22,6 +22,11 @@ public class AutoDriveStraightRaiseElev extends SequentialCommandGroup {
       new ParallelCommandGroup(
         //drive train
         new SequentialCommandGroup (
+          //front drives 251.5" fast then 10" slow
+          //distance to table from edge of field = 300"
+          //length of robot w/ bumpers : 38.5"
+          //slow distance from front desired: 10"
+          //fast distance from front : 300 - robot length - slow distance" = 251.5"
           new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.STRAIGHT_TIMEOUT),
           new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2, Constants.AUTO_SPEED_2)
         ), 
