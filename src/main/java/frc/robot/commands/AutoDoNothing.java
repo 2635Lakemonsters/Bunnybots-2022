@@ -10,8 +10,8 @@ public class AutoDoNothing extends CommandBase {
   /** Creates a new AutoDoNothing. */
   public AutoDoNothing() {
     // Use addRequirements() here to declare subsystem dependencies.
-    System.out.println("对不起我的中文不好，对不起对不起");
-    System.out.println("你是我的小呀小苹果， 怎么爱你都不嫌多");
+    // System.out.println("对不起我的中文不好，对不起对不起");
+    // System.out.println("你是我的小呀小苹果");
   }
 
   // Called when the command is initially scheduled.

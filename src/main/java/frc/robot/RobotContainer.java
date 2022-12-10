@@ -25,6 +25,7 @@ import frc.robot.commands.IntakeCommand;
 import frc.robot.commands.IntakePneumaticCommandIn;
 import frc.robot.commands.IntakePneumaticCommandOut;
 import frc.robot.commands.NavxDriveCommand;
+import frc.robot.commands.PrintToLog;
 import frc.robot.subsystems.DriveTrainSubsystem;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.ExampleSubsystem;
@@ -55,6 +56,8 @@ public class RobotContainer {
   private SendableChooser<CommandGroupBase> m_autoChooser;
 
   // COMMANDS
+    //util
+  private final PrintToLog m_printToLog = new PrintToLog();
     //these command declarations don't mean anything, they aren't called in robot container
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem, 0, 0);
@@ -143,6 +146,7 @@ public class RobotContainer {
     Button elevFullUpButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_FULL_UP_BUTTON);
     Button elevDownButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_DOWN_BUTTON);
     Button navxDriveButton = new JoystickButton(leftJoystick, Constants.NAVX_DRIVE_FORWARD_BUTTON);
+    Button printToLogButton = new JoystickButton(leftJoystick, Constants.PRINT_TO_LOG_BUTTON);
     Button pnuematicButton = new JoystickButton(leftJoystick, Constants.PNEUMATIC_BUTTON);
     //free spins when intakeButton is held, corrects with a slower speed when intakeButton is released
     intakeButton.whenHeld(m_intakeCommandFreeSpin);
@@ -152,6 +156,7 @@ public class RobotContainer {
     elevFullUpButton.whenPressed(m_elevFullUpCommand);
     elevDownButton.whenPressed(m_elevDownCommand);
     navxDriveButton.whenHeld(m_navxDriveCommand);
+    printToLogButton.whenPressed(m_printToLog);
 
     // to review - darren + ocean
     if (m_IntakePneumaticSubsystem.isOpen()) {
