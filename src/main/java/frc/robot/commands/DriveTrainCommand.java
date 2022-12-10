@@ -53,7 +53,15 @@ public class DriveTrainCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    if (m_colorSensor.getProximity() >= 100) {
+    //tested color sensor with wood plank w/ led ON @ lab
+    //WARNING: shoudl be calibrated @ field
+    //105      @ 5"
+    //120      @ 4"
+    //135      @ 3"
+    //190      @ 2"
+    //450      @ 1"
+    //750-1100 @ 0.5"
+    if (m_colorSensor.getProximity() >= 130) {
       return true;
     }
     return false;
