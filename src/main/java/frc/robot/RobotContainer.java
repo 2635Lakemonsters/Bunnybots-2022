@@ -13,6 +13,7 @@ import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 import edu.wpi.first.wpilibj.smartdashboard.SendableChooser;
 import edu.wpi.first.wpilibj.smartdashboard.SmartDashboard;
+import frc.robot.commands.AutoBunnyIntake;
 import frc.robot.commands.AutoDoNothing;
 import frc.robot.commands.AutoDriveLeftTurnScore;
 import frc.robot.commands.AutoDriveRightTurnScore;
@@ -73,6 +74,7 @@ public class RobotContainer {
   private final IntakePneumaticCommandOut m_IntakePneumaticCommandOut = new IntakePneumaticCommandOut(m_IntakePneumaticSubsystem);
 
   //Auto Sequences
+  private final AutoBunnyIntake m_autoBunnyIntake = new AutoBunnyIntake(m_drivetrainSubsystem, m_intakeSubsystem);
   private final AutoDriveStraightRaiseElev m_autoDriveStraightRaiseElev = new AutoDriveStraightRaiseElev(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveLeftTurnScore m_autoDriveLeftTurnScore = new AutoDriveLeftTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveRightTurnScore m_autoDriveRightTurnScore = new AutoDriveRightTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
@@ -146,8 +148,8 @@ public class RobotContainer {
     Button elevFullUpButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_FULL_UP_BUTTON);
     Button elevDownButton = new JoystickButton(rightJoystick, Constants.ELEVATOR_DOWN_BUTTON);
     Button navxDriveButton = new JoystickButton(leftJoystick, Constants.NAVX_DRIVE_FORWARD_BUTTON);
-    Button pnuematicButton = new JoystickButton(leftJoystick, Constants.PNEUMATIC_BUTTON);
     Button printToLogButton = new JoystickButton(leftJoystick, Constants.PRINT_TO_LOG_BUTTON);
+    Button pnuematicButton = new JoystickButton(leftJoystick, Constants.PNEUMATIC_BUTTON);
     //free spins when intakeButton is held, corrects with a slower speed when intakeButton is released
     intakeButton.whenHeld(m_intakeCommandFreeSpin);
     intakeButton.whenReleased(m_intakeCommand_doCorrection);
@@ -156,6 +158,7 @@ public class RobotContainer {
     elevFullUpButton.whenPressed(m_elevFullUpCommand);
     elevDownButton.whenPressed(m_elevDownCommand);
     navxDriveButton.whenHeld(m_navxDriveCommand);
+    printToLogButton.whenPressed(m_printToLog);
 
     // to review - darren + ocean
     if (m_IntakePneumaticSubsystem.isOpen()) {
@@ -163,7 +166,6 @@ public class RobotContainer {
     } else {
       pnuematicButton.whenPressed(m_IntakePneumaticCommandOut);
     }
-    printToLogButton.whenPressed(m_printToLog);
   }
 
   /**
@@ -178,8 +180,12 @@ public class RobotContainer {
     m_autoChooser.setDefaultOption("AUTO", m_autoCommand);//establish default auto option
 
     // create other options in SmartDashBoard
-    m_autoChooser.addOption("FreeSpin", m_intakeCommandFreeSpin);
-    m_autoChooser.addOption("doCorrection", m_intakeCommand_doCorrection);
+    m_autoChooser.addOption("BunnyIntake", m_autoBunnyIntake);
+    m_autoChooser.addOption("DoNothing", m_autoDoNothing);
+    m_autoChooser.addOption("DriveLeftTurnScore", m_autoDriveLeftTurnScore);
+    m_autoChooser.addOption("DriveRightTurnScore", m_autoDriveRightTurnScore);
+    m_autoChooser.addOption("DriveStraightRaiseElev", m_autoDriveStraightRaiseElev);
+
 
     SmartDashboard.putData("Auto Chooser", m_autoChooser);
 
