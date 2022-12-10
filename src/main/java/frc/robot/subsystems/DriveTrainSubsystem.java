@@ -7,7 +7,9 @@ package frc.robot.subsystems;
 import com.ctre.phoenix.motorcontrol.ControlMode;
 import com.ctre.phoenix.motorcontrol.can.TalonSRX;
 import com.ctre.phoenix.motorcontrol.can.WPI_TalonSRX;
+import com.revrobotics.ColorSensorV3;
 
+import edu.wpi.first.wpilibj.I2C;
 import edu.wpi.first.wpilibj.drive.DifferentialDrive;
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
@@ -22,7 +24,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
   private WPI_TalonSRX backRightMotor;
   private WPI_TalonSRX frontLeftMotor;
   private WPI_TalonSRX backLeftMotor;
-
+  private final I2C.Port i2cPort = I2C.Port.kOnboard;
+  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
   private DifferentialDrive differentialDrive;
 
   // default auto speeds, will be changed in DriveTrainCommand
@@ -48,6 +51,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     if (Robot.isInAuto) {
       driveAuto(leftSpeedAuto, rightSpeedAuto);
     } else {
+      System.out.println("distance = " + m_colorSensor.getProximity());
       driveTele();
     }
   }
