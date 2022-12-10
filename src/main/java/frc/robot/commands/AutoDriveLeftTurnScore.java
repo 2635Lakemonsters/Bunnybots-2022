@@ -19,7 +19,12 @@ public class AutoDriveLeftTurnScore extends SequentialCommandGroup {
     // Add your commands in the addCommands() call, e.g.
     // addCommands(new FooCommand(), new BarCommand());
     addCommands(
-      new ParallelCommandGroup(
+      new ParallelCommandGroup( 
+        //Robot length edge-middle w/ bumpers : 19.25"
+        //Distance from edge field - middle of tote @ side of scoring tower : 315"
+        //want robot middle to go to 315" from edge of field prior to turn
+        //robot middle goes 295.75"(total)
+        //Timeout stops when middle has gone 295.75"
         new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.TURN_TIMEOUT),
         new ElevatorUpCommand(elevatorSubsystem, Constants.ELEV_HALF_UP)
       ),
