@@ -15,6 +15,8 @@ import frc.robot.Constants;
 public class IntakePneumaticSubsystem extends SubsystemBase {
   /** Creates a new CompressorSubsystem. */
   DoubleSolenoid doubleSolenoid;
+  Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+
 
   public IntakePneumaticSubsystem() {
     doubleSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.FORWARD_CHANNEL, Constants.REVERSE_CHANNEL);

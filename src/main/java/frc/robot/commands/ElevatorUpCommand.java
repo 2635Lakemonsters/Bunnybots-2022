@@ -19,6 +19,8 @@ public class ElevatorUpCommand extends CommandBase {
   public ElevatorUpCommand(ElevatorSubsystem elevatorSubsystem, boolean isGoingToMid) {
     this.isGoingToMid = isGoingToMid; 
 
+    System.out.println("IT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+
     m_elevatorSubsystem = elevatorSubsystem;
     addRequirements(m_elevatorSubsystem);
     // Use addRequirements() here to declare subsystem dependencies.
@@ -28,9 +30,9 @@ public class ElevatorUpCommand extends CommandBase {
   @Override
   public void initialize() {
     System.out.println("up command button pressed: is going to mid TODO");
-    System.out.println("Bottom: "+m_elevatorSubsystem.isAtBottom());
-    System.out.println("Mid: "+m_elevatorSubsystem.isAtMid());
-    System.out.println("Top: "+m_elevatorSubsystem.isAtTop());
+    // System.out.println("Bottom: "+m_elevatorSubsystem.isAtBottom());
+    // System.out.println("Mid: "+m_elevatorSubsystem.isAtMid());
+    // System.out.println("Top: "+m_elevatorSubsystem.isAtTop());
   }
 
   // Called every time the scheduler runs while the command is scheduled.

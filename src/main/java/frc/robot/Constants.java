@@ -14,13 +14,13 @@ package frc.robot;
  */
 public final class Constants {
     //motor channels
-    public static final int FRONT_RIGHT_DRIVE_CHANNEL = 4;
-    public static final int BACK_RIGHT_DRIVE_CHANNEL = 6;
-    public static final int FRONT_LEFT_DRIVE_CHANNEL = 7;
-    public static final int BACK_LEFT_DRIVE_CHANNEL = 5;
-    public static final int INTAKE_MOTOR_CHANNEL = 2;
+    public static final int FRONT_RIGHT_DRIVE_CHANNEL = 2;
+    public static final int BACK_RIGHT_DRIVE_CHANNEL = 4;
+    public static final int FRONT_LEFT_DRIVE_CHANNEL = 1;
+    public static final int BACK_LEFT_DRIVE_CHANNEL = 3;
+    public static final int INTAKE_MOTOR_CHANNEL = 5;
     //need to find ID, NOT ACUTALLY 8
-    public static final int ELEVATOR_MOTOR_CHANNEL = 1;
+    public static final int ELEVATOR_MOTOR_CHANNEL = 6;
 
     //joystick and buttons
     public static final int RIGHT_JOYSTICK_CHANNEL = 0;
@@ -53,8 +53,8 @@ public final class Constants {
     public static final double MAX_DIFF_POW = 0.5;
     
     //speeds for ElevatorUpCommand and ElevatorDownCommand, likely to change
-    public static final double ELEVATOR_UP_SPEED = 0.2;
-    public static final double ELEVATOR_DOWN_SPEED = -0.2;
+    public static final double ELEVATOR_UP_SPEED = 0.5;
+    public static final double ELEVATOR_DOWN_SPEED = -0.4;
 
     //timeout Values for Auto
     public static final int TURN_TIMEOUT = 5;
@@ -70,6 +70,6 @@ public final class Constants {
 
     //channels for pneumatics
     public static final int FORWARD_CHANNEL = 1;
-    public static final int REVERSE_CHANNEL = 2;
+    public static final int REVERSE_CHANNEL = 0;
     public static final int PNEUMATIC_BUTTON = 3;
 }

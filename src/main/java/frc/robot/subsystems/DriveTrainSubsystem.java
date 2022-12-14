@@ -51,7 +51,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     if (Robot.isInAuto) {
       driveAuto(leftSpeedAuto, rightSpeedAuto);
     } else {
-      System.out.println("distance = " + m_colorSensor.getProximity());
+      // System.out.println("distance = " + m_colorSensor.getProximity());
       driveTele();
     }
   }

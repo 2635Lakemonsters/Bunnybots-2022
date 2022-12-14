@@ -38,7 +38,7 @@ public class DriveTrainCommand extends CommandBase {
   @Override
   public void execute() {
     m_driveSubsystem.driveAuto(leftAutoSpeed, rightAutoSpeed);
-    System.out.println("distance = " + m_colorSensor.getProximity());
+    // System.out.println("distance = " + m_colorSensor.getProximity());
     // if (m_colorSensor.getProximity() >= 110) {
     //   this.end(true);
     // }

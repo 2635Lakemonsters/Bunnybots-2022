@@ -63,9 +63,9 @@ public class RobotContainer {
   private final ExampleCommand m_autoCommand = new ExampleCommand(m_exampleSubsystem);
   private final DriveTrainCommand m_driveTrainCommand = new DriveTrainCommand(m_drivetrainSubsystem, 0, 0);
     //these mean things, as they are called in robot container off different events
-  private final IntakeCommand m_intakeCommandFreeSpin = new IntakeCommand(m_intakeSubsystem, false);
-  private final IntakeCommand m_intakeCommand_doCorrection = new IntakeCommand(m_intakeSubsystem, true);
-    //elevator commands, half and full and down
+  private final IntakeCommand m_intakeCommandFreeSpin = new IntakeCommand(m_intakeSubsystem, false, m_elevatorSubsystem);
+  private final IntakeCommand m_intakeCommand_doCorrection = new IntakeCommand(m_intakeSubsystem, true, m_elevatorSubsystem);
+    //elevator commands, half and full and dow
   private final ElevatorUpCommand m_elevHalfUpCommand = new ElevatorUpCommand(m_elevatorSubsystem, true);
   private final ElevatorUpCommand m_elevFullUpCommand = new ElevatorUpCommand(m_elevatorSubsystem, false);
   private final ElevatorDownCommand m_elevDownCommand = new ElevatorDownCommand(m_elevatorSubsystem);
@@ -74,7 +74,7 @@ public class RobotContainer {
   private final IntakePneumaticCommandOut m_IntakePneumaticCommandOut = new IntakePneumaticCommandOut(m_IntakePneumaticSubsystem);
 
   //Auto Sequences
-  private final AutoBunnyIntake m_autoBunnyIntake = new AutoBunnyIntake(m_drivetrainSubsystem, m_intakeSubsystem);
+  private final AutoBunnyIntake m_autoBunnyIntake = new AutoBunnyIntake(m_drivetrainSubsystem, m_intakeSubsystem, m_elevatorSubsystem);
   private final AutoDriveStraightRaiseElev m_autoDriveStraightRaiseElev = new AutoDriveStraightRaiseElev(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveLeftTurnScore m_autoDriveLeftTurnScore = new AutoDriveLeftTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveRightTurnScore m_autoDriveRightTurnScore = new AutoDriveRightTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
