@@ -47,8 +47,8 @@ public final class Constants {
     public static final boolean kMotorInvert = false;
     
     //speed for driveTrainCommand autonomous 
-    public static final double AUTO_SPEED_1 = -0.3;
-    public static final double AUTO_SPEED_2 = -0.2;
+    public static final double AUTO_SPEED_1 = -0.2;
+    public static final double AUTO_SPEED_2 = -0.1;
     public static final double TURNING_SPEED = 0.2; // adjust depending on overshoot turn
     public static final double MAX_DIFF_POW = 0.5;
     
@@ -57,19 +57,23 @@ public final class Constants {
     public static final double ELEVATOR_DOWN_SPEED = -0.4;
 
     //timeout Values for Auto
-    public static final int TURN_TIMEOUT = 5;
-    public static final int STRAIGHT_TIMEOUT = 3;
+    public static final int STRAIGHT_TURN_TIMEOUT = 1;
+    public static final double STRAIGHT_TIMEOUT = 0.3;
 
     //boolean constants for elevator up command
     //used in conjunction isGoingToMid
     public static final boolean ELEV_HALF_UP = true;
     public static final boolean ELEV_FULL_UP = false;
     
-    //for when intake is called in auto
+    //intake command stuff
     public static final boolean SPIN_FREE = false;
+    public static final double FREE_SPIN_SPEED = 0.7;
+    public static final double CORRECTION_SPEED = -0.2;
 
     //channels for pneumatics
     public static final int FORWARD_CHANNEL = 1;
     public static final int REVERSE_CHANNEL = 0;
     public static final int PNEUMATIC_BUTTON = 3;
+
+
 }

@@ -19,7 +19,7 @@ public class ElevatorUpCommand extends CommandBase {
   public ElevatorUpCommand(ElevatorSubsystem elevatorSubsystem, boolean isGoingToMid) {
     this.isGoingToMid = isGoingToMid; 
 
-    System.out.println("IT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+    //System.out.println("IT WORKS!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
 
     m_elevatorSubsystem = elevatorSubsystem;
     addRequirements(m_elevatorSubsystem);

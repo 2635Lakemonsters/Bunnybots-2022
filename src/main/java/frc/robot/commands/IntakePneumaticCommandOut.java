@@ -21,6 +21,7 @@ public class IntakePneumaticCommandOut extends CommandBase {
   // Called when the command is initially scheduled.
   @Override
   public void initialize() {
+    System.out.println("intakePneumaticCommandOut INITIALIZE");
     isExtended = m_intakePneumaticSubsystem.isOpen();
     if(!isExtended){//if retracted then extend
       m_intakePneumaticSubsystem.intakeOut();

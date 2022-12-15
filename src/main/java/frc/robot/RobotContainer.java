@@ -75,7 +75,7 @@ public class RobotContainer {
 
   //Auto Sequences
   private final AutoBunnyIntake m_autoBunnyIntake = new AutoBunnyIntake(m_drivetrainSubsystem, m_intakeSubsystem, m_elevatorSubsystem);
-  private final AutoDriveStraightRaiseElev m_autoDriveStraightRaiseElev = new AutoDriveStraightRaiseElev(m_drivetrainSubsystem, m_elevatorSubsystem);
+  public final AutoDriveStraightRaiseElev m_autoDriveStraightRaiseElev = new AutoDriveStraightRaiseElev(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveLeftTurnScore m_autoDriveLeftTurnScore = new AutoDriveLeftTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveRightTurnScore m_autoDriveRightTurnScore = new AutoDriveRightTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDoNothing m_autoDoNothing = new AutoDoNothing();
@@ -161,11 +161,11 @@ public class RobotContainer {
     printToLogButton.whenPressed(m_printToLog);
 
     // to review - darren + ocean
-    if (m_IntakePneumaticSubsystem.isOpen()) {
-      pnuematicButton.whenPressed(m_IntakePneumaticCommandIn);
-    } else {
-      pnuematicButton.whenPressed(m_IntakePneumaticCommandOut);
-    }
+    // if (m_IntakePneumaticSubsystem.isOpen()) {
+    pnuematicButton.whenPressed(m_IntakePneumaticCommandIn);
+    // } else {
+    pnuematicButton.whenPressed(m_IntakePneumaticCommandOut);
+    // }
   }
 
   /**

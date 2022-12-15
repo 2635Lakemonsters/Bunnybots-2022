@@ -5,6 +5,7 @@
 package frc.robot.commands;
 
 import edu.wpi.first.wpilibj2.command.CommandBase;
+import frc.robot.Constants;
 import frc.robot.subsystems.ElevatorSubsystem;
 import frc.robot.subsystems.IntakeSubsystem;
 
@@ -37,12 +38,12 @@ public class IntakeCommand extends CommandBase {
     // System.out.println("global IP = " + m_intakeSubsystem.getGlobalInitialPosition());
     double currentEP = m_intakeSubsystem.getEncoderPosition();
     if (isButtonReleasedYet == false) { // spin freely
-      m_intakeSubsystem.spinIntake(0.7);
+      m_intakeSubsystem.spinIntake(Constants.FREE_SPIN_SPEED);
       // System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
       // System.out.println("IntakeCommand.execute(): initialPosition: " + initialEncoderPosition);
 
     } else if (isButtonReleasedYet == true) { // correct to vertical position
-      m_intakeSubsystem.spinIntake(-0.2);
+      m_intakeSubsystem.spinIntake(Constants.CORRECTION_SPEED);
 
       if ((2048 - (Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())) % 2048) <= 250) {
         //System.out.println("initialEncoderPosition: " + initialEncoderPosition);
@@ -57,6 +58,7 @@ public class IntakeCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("IntakeCommand ENDED!!!!!!!!!!!!!!!!!!!");
     m_intakeSubsystem.spinIntake(0);
     if (interrupted == true) {
       m_intakeSubsystem.spinIntake(0);
@@ -70,10 +72,7 @@ public class IntakeCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    // if (!m_elevatorSubsystem.isAtBottom()){
-    //   return true;
-    // }
-    return false;
+    return !m_elevatorSubsystem.isAtBottom();
   }
 }
 

@@ -25,7 +25,7 @@ public class AutoDriveRightTurnScore extends SequentialCommandGroup {
         //want robot middle to go to 315" from edge of field prior to turn
         //robot middle goes 295.75"(total)
         //Timeout stops when middle has gone 295.75"
-        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.TURN_TIMEOUT),
+        new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.STRAIGHT_TURN_TIMEOUT),
         new ElevatorUpCommand(elevatorSubsystem, Constants.ELEV_HALF_UP)
       ),
       new AutoTurn(driveTrainSubsystem, Constants.TURNING_SPEED, true),//need to test turning speed

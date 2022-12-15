@@ -15,7 +15,7 @@ import frc.robot.Constants;
 public class IntakePneumaticSubsystem extends SubsystemBase {
   /** Creates a new CompressorSubsystem. */
   DoubleSolenoid doubleSolenoid;
-  Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
+ // Compressor pcmCompressor = new Compressor(0, PneumaticsModuleType.CTREPCM);
 
 
   public IntakePneumaticSubsystem() {
@@ -36,6 +36,7 @@ public class IntakePneumaticSubsystem extends SubsystemBase {
 
 	}
 	public void intakeOut() {
+    System.out.println("intakeOut RUNNINGGNGNNGNGNGGNNGNGNG");
 		doubleSolenoid.set(kReverse);
 	}
 

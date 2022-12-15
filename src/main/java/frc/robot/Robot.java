@@ -77,7 +77,8 @@ public class Robot extends TimedRobot {
     isInAuto = true;
     System.out.println("Robot.java autonomousInit()");
 
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    // m_autonomousCommand = m_robotContainer.getAutonomousCommand();
+    m_autonomousCommand = m_robotContainer.m_autoDriveStraightRaiseElev;
 
     // schedule the autonomous command (example)
     if (m_autonomousCommand != null) {
