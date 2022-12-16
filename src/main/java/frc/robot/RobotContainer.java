@@ -80,6 +80,7 @@ public class RobotContainer {
   private final AutoDriveRightTurnScore m_autoDriveRightTurnScore = new AutoDriveRightTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDoNothing m_autoDoNothing = new AutoDoNothing();
 
+
   // JOYSTICKS
   public static Joystick rightJoystick = new Joystick(Constants.RIGHT_JOYSTICK_CHANNEL);
   public static Joystick leftJoystick = new Joystick(Constants.LEFT_JOYSTICK_CHANNEL);
@@ -88,10 +89,11 @@ public class RobotContainer {
   public static AHRS ahrs;
   public static PIDController turnController;
   public static  double rotateToAngleRate;
-  public final NavxDriveCommand m_navxDriveCommand = new NavxDriveCommand(m_drivetrainSubsystem, 0.2);
+  public final NavxDriveCommand m_navxDriveCommand = new NavxDriveCommand(m_drivetrainSubsystem, 0.5);
     
     /* The following PID Controller coefficients will need to be tuned */
-    /* to match the dynamics of your drive system.  Note that the      */
+    /* to match the dynamics of your drive system
+    .  Note that the      */
     /* SmartDashboard in Test mode has support for helping you tune    */
     /* controllers by displaying a form where you can enter new P, I,  */
     /* and D constants and test the mechanism.                         */
@@ -159,7 +161,6 @@ public class RobotContainer {
     elevDownButton.whenPressed(m_elevDownCommand);
     navxDriveButton.whenHeld(m_navxDriveCommand);
     printToLogButton.whenPressed(m_printToLog);
-
     // to review - darren + ocean
     // if (m_IntakePneumaticSubsystem.isOpen()) {
     pnuematicButton.whenPressed(m_IntakePneumaticCommandIn);
@@ -180,13 +181,14 @@ public class RobotContainer {
     m_autoChooser.setDefaultOption("AUTO", m_autoCommand);//establish default auto option
 
     // create other options in SmartDashBoard
-    m_autoChooser.addOption("BunnyIntake", m_autoBunnyIntake);
     m_autoChooser.addOption("DoNothing", m_autoDoNothing);
+
+    m_autoChooser.addOption("BunnyIntake", m_autoBunnyIntake);
     m_autoChooser.addOption("DriveLeftTurnScore", m_autoDriveLeftTurnScore);
     m_autoChooser.addOption("DriveRightTurnScore", m_autoDriveRightTurnScore);
     m_autoChooser.addOption("DriveStraightRaiseElev", m_autoDriveStraightRaiseElev);
 
-
+    SmartDashboard.putBoolean("TESTINGTESING", true);
     SmartDashboard.putData("Auto Chooser", m_autoChooser);
 
     return m_autoChooser.getSelected();

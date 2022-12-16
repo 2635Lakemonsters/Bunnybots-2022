@@ -47,22 +47,23 @@ public class IntakeCommand extends CommandBase {
 
       if (
         (
-          2048 - Math.abs(
+          2048 - (
             Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
           ) % 2048
         ) 
-        >= 
-        (2048-250) //
+        <= 250.
+        // >= 
+        // (2048-250) //
       ) {
-        System.out.println("initialEncoderPosition: " + initialEncoderPosition);
-        System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+        // System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+        // System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
         System.out.println("Math.abs(currentEP): " + Math.abs(currentEP));
-        System.out.println("Math.abs(m_intakeSubsystem.getGlobalInitialPosition(): " + Math.abs(m_intakeSubsystem.getGlobalInitialPosition());
+        System.out.println("Math.abs(m_intakeSubsystem.getGlobalInitialPosition(): " + Math.abs(m_intakeSubsystem.getGlobalInitialPosition()));
         System.out.println("Math.abs(delta): "+ (Math.abs(
             Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
           ) % 2048)
         );
-        System.out.println("position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        // System.out.println("position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         end(true);
       }
     }

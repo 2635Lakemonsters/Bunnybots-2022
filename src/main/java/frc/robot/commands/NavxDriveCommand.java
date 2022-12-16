@@ -39,6 +39,7 @@ public class NavxDriveCommand extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
+    
     double currentYaw = RobotContainer.ahrs.getYaw();
     double yawError = currentYaw - targetYaw;
     double diffPow = (1.0 / 180.0) * yawError;

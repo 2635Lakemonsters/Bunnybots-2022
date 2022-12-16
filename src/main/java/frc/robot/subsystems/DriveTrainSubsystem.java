@@ -50,6 +50,7 @@ public class DriveTrainSubsystem extends SubsystemBase {
     // This method will be called once per scheduler run
     if (Robot.isInAuto) {
       driveAuto(leftSpeedAuto, rightSpeedAuto);
+      // System.out.println("Robot is in auto drive auto");
     } else {
       // System.out.println("distance = " + m_colorSensor.getProximity());
       driveTele();
