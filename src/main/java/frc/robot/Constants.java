@@ -26,7 +26,7 @@ public final class Constants {
     public static final int RIGHT_JOYSTICK_CHANNEL = 1;
     public static final int LEFT_JOYSTICK_CHANNEL = 0;
     //right buttons
-    public static final int R_SPIN_INTAKE_FORWARD_BUTTON = 2;
+    public static final int R_SPIN_INTAKE_FORWARD_BUTTON = 1;
     public static final int ELEVATOR_DOWN_BUTTON = 3;
     public static final int ELEVATOR_HALF_UP_BUTTON = 4;
     public static final int ELEVATOR_FULL_UP_BUTTON = 6;
