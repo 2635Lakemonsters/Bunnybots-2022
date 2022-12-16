@@ -37,37 +37,42 @@ public class IntakeCommand extends CommandBase {
   public void execute() {
     // System.out.println("global IP = " + m_intakeSubsystem.getGlobalInitialPosition());
     double currentEP = m_intakeSubsystem.getEncoderPosition();
-    if (isButtonReleasedYet == false) { // spin freely
-      m_intakeSubsystem.spinIntake(Constants.FREE_SPIN_SPEED);
-      // System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
-      // System.out.println("IntakeCommand.execute(): initialPosition: " + initialEncoderPosition);
 
-    } else if (isButtonReleasedYet == true) { // correct to vertical position
-      m_intakeSubsystem.spinIntake(Constants.CORRECTION_SPEED);
+    // if the elevator is at the bottom, then the driver will be able to spin
+    if(m_elevatorSubsystem.isAtBottom()){ 
+      if (isButtonReleasedYet == false) { // spin freely
+       m_intakeSubsystem.spinIntake(Constants.FREE_SPIN_SPEED);
+       // System.out.println("IntakeCommand.execute(): position: " + m_intakeSubsystem.getEncoderPosition());
+        // System.out.println("IntakeCommand.execute(): initialPosition: " + initialEncoderPosition);
 
-      if (
-        (
-          2048 - (
-            Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
-          ) % 2048
-        ) 
-        <= 250.
-        // >= 
-        // (2048-250) //
-      ) {
-        // System.out.println("initialEncoderPosition: " + initialEncoderPosition);
-        // System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
-        System.out.println("Math.abs(currentEP): " + Math.abs(currentEP));
-        System.out.println("Math.abs(m_intakeSubsystem.getGlobalInitialPosition(): " + Math.abs(m_intakeSubsystem.getGlobalInitialPosition()));
-        System.out.println("Math.abs(delta): "+ (Math.abs(
-            Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
-          ) % 2048)
-        );
-        // System.out.println("position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        end(true);
-      }
+     } else if (isButtonReleasedYet == true) { // correct to vertical position
+       m_intakeSubsystem.spinIntake(Constants.CORRECTION_SPEED);
+
+       if (
+         (
+            2048 - (
+             Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
+           ) % 2048
+         )  
+         <= 250.
+          // >= 
+          // (2048-250) //
+       ) {
+          // System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+            // System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+          System.out.println("Math.abs(m_intakeSubsystem.getGlobalInitialPosition(): " + Math.abs(m_intakeSubsystem.getGlobalInitialPosition()));
+          System.out.println("Math.abs(delta): "+ (Math.abs(
+              Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
+            ) % 2048)
+         );
+          // System.out.println("position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+         end(true);
+        }
     }
-
+  } else { // when elevator is in motion / not at bottom, do not spin intake
+    m_intakeSubsystem.spinIntake(0);// if not at bottom, set speed = 0 and continues executing
+    System.out.println("!!PUT THE ELEVATOR DOWNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN!!!!!!!!!!ERROR!!!!!ELEVATOR!!DOWN!!!!!!!PUT!!THE!!!!ELEVATOR!!DOWN!!!\n!!!!!!!!ERRoR!!!!ELEVATOR!!DOWN!!!\n!!ELEVATOR!!DOWN!!!!!!!ERROR!!!!!!!!!ERROR!!!ELEVATOR!!DOWN!!!!!!!!!ELEVATOR!!DOWN!!!!!!!!!!!!!!!");
+  }
   }
 
   // Called once the command ends or is interrupted.
