@@ -23,8 +23,8 @@ public final class Constants {
     public static final int ELEVATOR_MOTOR_CHANNEL = 6;
 
     //joystick and buttons
-    public static final int RIGHT_JOYSTICK_CHANNEL = 0;
-    public static final int LEFT_JOYSTICK_CHANNEL = 1;
+    public static final int RIGHT_JOYSTICK_CHANNEL = 1;
+    public static final int LEFT_JOYSTICK_CHANNEL = 0;
     //right buttons
     public static final int R_SPIN_INTAKE_FORWARD_BUTTON = 2;
     public static final int ELEVATOR_DOWN_BUTTON = 3;

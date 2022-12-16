@@ -45,10 +45,24 @@ public class IntakeCommand extends CommandBase {
     } else if (isButtonReleasedYet == true) { // correct to vertical position
       m_intakeSubsystem.spinIntake(Constants.CORRECTION_SPEED);
 
-      if ((2048 - (Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())) % 2048) <= 250) {
-        //System.out.println("initialEncoderPosition: " + initialEncoderPosition);
-        //System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
-        //System.out.println("GIP position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+      if (
+        (
+          2048 - Math.abs(
+            Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
+          ) % 2048
+        ) 
+        >= 
+        (2048-250) //
+      ) {
+        System.out.println("initialEncoderPosition: " + initialEncoderPosition);
+        System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
+        System.out.println("Math.abs(currentEP): " + Math.abs(currentEP));
+        System.out.println("Math.abs(m_intakeSubsystem.getGlobalInitialPosition(): " + Math.abs(m_intakeSubsystem.getGlobalInitialPosition());
+        System.out.println("Math.abs(delta): "+ (Math.abs(
+            Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
+          ) % 2048)
+        );
+        System.out.println("position passed!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
         end(true);
       }
     }
@@ -58,7 +72,7 @@ public class IntakeCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    System.out.println("IntakeCommand ENDED!!!!!!!!!!!!!!!!!!!");
+    System.out.println("IntakeCommand ENDED====================================");
     m_intakeSubsystem.spinIntake(0);
     if (interrupted == true) {
       m_intakeSubsystem.spinIntake(0);
@@ -72,7 +86,11 @@ public class IntakeCommand extends CommandBase {
   // Returns true when the command should end.
   @Override
   public boolean isFinished() {
-    return !m_elevatorSubsystem.isAtBottom();
+    // if (m_elevatorSubsystem.isAtBottom()){
+    //   return false;
+
+    // }
+    return false;
   }
 }
 
