@@ -47,6 +47,7 @@ public class ElevatorUpCommand extends CommandBase {
   @Override
   public void end(boolean interrupted) {
     m_elevatorSubsystem.setElevatorSpeed(0);
+    System.out.println("NavxDriveCommand ENDED!!!!!!!!!!!!!!!!!!!");
   }
 
   // Returns true when the command should end.

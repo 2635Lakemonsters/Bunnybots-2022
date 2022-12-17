@@ -49,7 +49,7 @@ public class RobotContainer {
   // The robot's subsystems and commands are defined here...
   // SUBSYSTEMS
   private final ExampleSubsystem m_exampleSubsystem = new ExampleSubsystem();
-  private final DriveTrainSubsystem m_drivetrainSubsystem = new DriveTrainSubsystem();
+  public final DriveTrainSubsystem m_drivetrainSubsystem = new DriveTrainSubsystem();
   private final IntakeSubsystem m_intakeSubsystem = new IntakeSubsystem();
   private final ElevatorSubsystem m_elevatorSubsystem = new ElevatorSubsystem();
   private final IntakePneumaticSubsystem m_IntakePneumaticSubsystem = new IntakePneumaticSubsystem();
@@ -74,7 +74,7 @@ public class RobotContainer {
   private final IntakePneumaticCommandOut m_IntakePneumaticCommandOut = new IntakePneumaticCommandOut(m_IntakePneumaticSubsystem);
 
   //Auto Sequences
-  private final AutoBunnyIntake m_autoBunnyIntake = new AutoBunnyIntake(m_drivetrainSubsystem, m_intakeSubsystem, m_elevatorSubsystem);
+  private final AutoBunnyIntake m_autoBunnyIntake = new AutoBunnyIntake(m_drivetrainSubsystem, m_intakeSubsystem, m_elevatorSubsystem, m_IntakePneumaticSubsystem);
   public final AutoDriveStraightRaiseElev m_autoDriveStraightRaiseElev = new AutoDriveStraightRaiseElev(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveLeftTurnScore m_autoDriveLeftTurnScore = new AutoDriveLeftTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
   private final AutoDriveRightTurnScore m_autoDriveRightTurnScore = new AutoDriveRightTurnScore(m_drivetrainSubsystem, m_elevatorSubsystem);
@@ -189,7 +189,7 @@ public class RobotContainer {
     m_autoChooser.addOption("DriveStraightRaiseElev", m_autoDriveStraightRaiseElev);
 
     m_autoChooser.addOption("Meg's drive straight no navx TEST", new DriveTrainCommand(m_drivetrainSubsystem, 0.2, 0.2));
-
+    m_autoChooser.addOption("NULL. or: absolutely nothing", null); 
     SmartDashboard.putBoolean("TESTINGTESING", true);
     SmartDashboard.putData("Auto Chooser", m_autoChooser);
 

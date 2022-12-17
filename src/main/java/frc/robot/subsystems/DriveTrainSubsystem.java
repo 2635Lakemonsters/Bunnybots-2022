@@ -25,8 +25,11 @@ public class DriveTrainSubsystem extends SubsystemBase {
   private WPI_TalonSRX frontLeftMotor;
   private WPI_TalonSRX backLeftMotor;
   private final I2C.Port i2cPort = I2C.Port.kOnboard;
-  private final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
-  private DifferentialDrive differentialDrive;
+  public final ColorSensorV3 m_colorSensor = new ColorSensorV3(i2cPort);
+  public DifferentialDrive differentialDrive;
+
+  public MotorControllerGroup leftMotors;
+  public MotorControllerGroup rightMotors;
 
   // default auto speeds, will be changed in DriveTrainCommand
 
@@ -41,26 +44,25 @@ public class DriveTrainSubsystem extends SubsystemBase {
     frontLeftMotor = new WPI_TalonSRX(Constants.FRONT_LEFT_DRIVE_CHANNEL);
     backLeftMotor = new WPI_TalonSRX(Constants.BACK_LEFT_DRIVE_CHANNEL);
 
-    MotorControllerGroup leftMotors = new MotorControllerGroup(frontLeftMotor, backLeftMotor);
-    MotorControllerGroup rightMotors = new  MotorControllerGroup(frontRightMotor, backRightMotor);
+    leftMotors = new MotorControllerGroup(frontLeftMotor, backLeftMotor);
+    rightMotors = new  MotorControllerGroup(frontRightMotor, backRightMotor);
 
-    differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
+    // differentialDrive = new DifferentialDrive(leftMotors, rightMotors);
   }
 
   @Override
   public void periodic() {
     // This method will be called once per scheduler run
     if (Robot.isInAuto) {
-      // driveAuto(leftSpeedAuto, rightSpeedAuto);
-      differentialDrive.tankDrive( -0.2, 0.2);// this.leftSpeedAuto, this.rightSpeedAuto);
-      System.out.println("Robot is in auto drive auto L: " + this.leftSpeedAuto + " R: " + this.rightSpeedAuto);
+      System.out.println("DT distance AUTO = " + m_colorSensor.getProximity());
+      this.leftMotors.set(-this.leftSpeedAuto);
+      this.rightMotors.set(this.rightSpeedAuto);
     } else {
-      // System.out.println("distance = " + m_colorSensor.getProximity());
-      driveTele();
+      System.out.println("DT distance TELE = " + m_colorSensor.getProximity());
+      this.leftMotors.set(-RobotContainer.leftJoystick.getY());
+      this.rightMotors.set(RobotContainer.rightJoystick.getY());    
     }
   }
-
-
 
   public void setAutoSpeeds(double leftspeed, double rightspeed) {
     this.leftSpeedAuto = leftspeed;
@@ -75,8 +77,4 @@ public class DriveTrainSubsystem extends SubsystemBase {
     // System.out.println("drive auto");
   }
   */
-  public void driveTele() {
-    differentialDrive.tankDrive(-RobotContainer.leftJoystick.getY(), RobotContainer.rightJoystick.getY());
-    System.out.println("@@@@@@@ TELE DRIVE ()");
-  }
 }

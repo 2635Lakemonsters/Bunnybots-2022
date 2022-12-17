@@ -48,6 +48,7 @@ public class DriveTrainCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
+    System.out.println("driveTrainCommand STOPPED!!!!!!!!!!");
     m_driveSubsystem.setAutoSpeeds(0, 0);
   }
 
@@ -62,9 +63,9 @@ public class DriveTrainCommand extends CommandBase {
     //190      @ 2"
     //450      @ 1"
     //750-1100 @ 0.5"
-    // if (m_colorSensor.getProximity() >= 130) {
-    //   return true;
-    // }
+    if (m_colorSensor.getProximity() >= 100) {
+      return true;
+    }
     return false;
   }
 }

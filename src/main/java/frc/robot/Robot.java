@@ -93,7 +93,12 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during autonomous. */
   @Override
-  public void autonomousPeriodic() {}
+  public void autonomousPeriodic() {
+    // m_robotContainer.m_drivetrainSubsystem.differentialDrive.tankDrive(-0.2, 0.2);
+
+
+    // System.out.println(RobotContainer.leftJoystick.getY());
+  }
 
   @Override
   public void teleopInit() {
@@ -112,7 +117,9 @@ public class Robot extends TimedRobot {
 
   /** This function is called periodically during operator control. */
   @Override
-  public void teleopPeriodic() {}
+  public void teleopPeriodic() {
+    // m_robotContainer.m_drivetrainSubsystem.differentialDrive.tankDrive(-RobotContainer.leftJoystick.getY(), RobotContainer.rightJoystick.getY());
+  }
 
   @Override
   public void testInit() {
