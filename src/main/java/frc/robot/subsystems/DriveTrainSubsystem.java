@@ -29,6 +29,8 @@ public class DriveTrainSubsystem extends SubsystemBase {
   private DifferentialDrive differentialDrive;
 
   // default auto speeds, will be changed in DriveTrainCommand
+
+  // REVIEW THIS SECTION - MEG
   private double leftSpeedAuto = 0;
   private double rightSpeedAuto = 0;
 
@@ -49,8 +51,9 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     if (Robot.isInAuto) {
-      driveAuto(leftSpeedAuto, rightSpeedAuto);
-      // System.out.println("Robot is in auto drive auto");
+      // driveAuto(leftSpeedAuto, rightSpeedAuto);
+      differentialDrive.tankDrive( -0.2, 0.2);// this.leftSpeedAuto, this.rightSpeedAuto);
+      System.out.println("Robot is in auto drive auto L: " + this.leftSpeedAuto + " R: " + this.rightSpeedAuto);
     } else {
       // System.out.println("distance = " + m_colorSensor.getProximity());
       driveTele();
@@ -62,13 +65,18 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public void setAutoSpeeds(double leftspeed, double rightspeed) {
     this.leftSpeedAuto = leftspeed;
     this.rightSpeedAuto = rightspeed; 
+    // System.out.println("setting auto speed L: " + leftSpeedAuto + " R: " + rightSpeedAuto);
   }
-
+  /*
   public void driveAuto(double leftSpeed, double rightSpeed) {
+    System.out.println("leftSpeed:" + leftSpeed);
+    System.out.println("rightSpeed:" + rightSpeed);
     differentialDrive.tankDrive(-leftSpeed, rightSpeed);
+    // System.out.println("drive auto");
   }
-
+  */
   public void driveTele() {
     differentialDrive.tankDrive(-RobotContainer.leftJoystick.getY(), RobotContainer.rightJoystick.getY());
+    System.out.println("@@@@@@@ TELE DRIVE ()");
   }
 }

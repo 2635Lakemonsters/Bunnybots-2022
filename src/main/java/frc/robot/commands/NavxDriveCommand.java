@@ -51,7 +51,12 @@ public class NavxDriveCommand extends CommandBase {
     double magnitude = Constants.AUTO_SPEED_2;
     double leftStickValue = magnitude + diffPow;
     double rightStickValue = magnitude - diffPow;
+
+    // this line is questionable - MEG
     m_driveSubsystem.setAutoSpeeds(leftStickValue, rightStickValue);
+    // m_driveSubsystem.setAutoSpeeds(0.5, 0.5);
+
+
     System.out.println("RSV: " + rightStickValue);
     System.out.println("LSV: " + leftStickValue);
     System.out.println("MAG: " + magnitude);

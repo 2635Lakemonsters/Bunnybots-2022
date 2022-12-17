@@ -37,6 +37,8 @@ public class Robot extends TimedRobot {
   private Command m_autonomousCommand;
 
   private RobotContainer m_robotContainer;
+
+  private SendableChooser<Command> m_autoChooser; 
   /**
    * This function is run when the robot is first started up and should be used for any
    * initialization code.
@@ -46,6 +48,8 @@ public class Robot extends TimedRobot {
     // Instantiate our RobotContainer.  This will perform all our button bindings, and put our
     // autonomous chooser on the dashboard.
     m_robotContainer = new RobotContainer();
+
+    m_autoChooser = m_robotContainer.getAutonomousCommand();
   }
 
   /**
@@ -77,10 +81,11 @@ public class Robot extends TimedRobot {
     isInAuto = true;
     System.out.println("Robot.java autonomousInit()");
 
-    m_autonomousCommand = m_robotContainer.getAutonomousCommand();
     // m_autonomousCommand = m_robotContainer.m_autoDriveStraightRaiseElev;
 
     // schedule the autonomous command (example)
+    m_autonomousCommand = m_autoChooser.getSelected();
+
     if (m_autonomousCommand != null) {
       m_autonomousCommand.schedule();
     }
@@ -101,6 +106,7 @@ public class Robot extends TimedRobot {
 
     if (m_autonomousCommand != null) {
       m_autonomousCommand.cancel();
+      m_autonomousCommand = null; 
     }
   }
 

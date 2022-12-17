@@ -38,7 +38,7 @@ public class DriveTrainCommand extends CommandBase {
   @Override
   public void execute() {
     
-    m_driveSubsystem.driveAuto(leftAutoSpeed, rightAutoSpeed);
+    m_driveSubsystem.setAutoSpeeds(leftAutoSpeed, rightAutoSpeed);
     // System.out.println("distance = " + m_colorSensor.getProximity());
     // if (m_colorSensor.getProximity() >= 110) {
     //   this.end(true);
@@ -48,7 +48,7 @@ public class DriveTrainCommand extends CommandBase {
   // Called once the command ends or is interrupted.
   @Override
   public void end(boolean interrupted) {
-    m_driveSubsystem.driveAuto(0, 0);
+    m_driveSubsystem.setAutoSpeeds(0, 0);
   }
 
   // Returns true when the command should end.
@@ -62,9 +62,9 @@ public class DriveTrainCommand extends CommandBase {
     //190      @ 2"
     //450      @ 1"
     //750-1100 @ 0.5"
-    if (m_colorSensor.getProximity() >= 130) {
-      return true;
-    }
+    // if (m_colorSensor.getProximity() >= 130) {
+    //   return true;
+    // }
     return false;
   }
 }

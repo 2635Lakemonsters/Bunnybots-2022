@@ -27,7 +27,7 @@ public class AutoDriveStraightRaiseElev extends SequentialCommandGroup {
           //length of robot w/ bumpers : 38.5"
           //slow distance from front desired: 10"
           //fast distance from front : 300 - robot length - slow distance" = 251.5"
-          new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1, Constants.AUTO_SPEED_1).withTimeout(Constants.STRAIGHT_TIMEOUT),
+          new NavxDriveCommand(driveTrainSubsystem, Constants.AUTO_SPEED_1).withTimeout(Constants.STRAIGHT_TIMEOUT),
           new DriveTrainCommand(driveTrainSubsystem, Constants.AUTO_SPEED_2, Constants.AUTO_SPEED_2)
         ), 
         //store elev

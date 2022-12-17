@@ -174,7 +174,7 @@ public class RobotContainer {
    *
    * @return the command to run in autonomous
    */
-  public Command getAutonomousCommand() {
+  public SendableChooser<Command> getAutonomousCommand() {
     // An ExampleCommand will run in autonomous
 
     SendableChooser<Command> m_autoChooser = new SendableChooser<>();
@@ -188,9 +188,11 @@ public class RobotContainer {
     m_autoChooser.addOption("DriveRightTurnScore", m_autoDriveRightTurnScore);
     m_autoChooser.addOption("DriveStraightRaiseElev", m_autoDriveStraightRaiseElev);
 
+    m_autoChooser.addOption("Meg's drive straight no navx TEST", new DriveTrainCommand(m_drivetrainSubsystem, 0.2, 0.2));
+
     SmartDashboard.putBoolean("TESTINGTESING", true);
     SmartDashboard.putData("Auto Chooser", m_autoChooser);
 
-    return m_autoChooser.getSelected();
+    return m_autoChooser; 
   }
 }
