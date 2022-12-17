@@ -57,7 +57,7 @@ public final class Constants {
     public static final double ELEVATOR_DOWN_SPEED = -0.6;
 
     //timeout Values for Auto
-    public static final int STRAIGHT_TURN_TIMEOUT = 2;
+    public static final int STRAIGHT_TURN_TIMEOUT = 3;
     public static final double STRAIGHT_TIMEOUT = 3;//for MEGAN
     public static final double AUTO_BUNNY_INTAKE_TIMEOUT = 2;
 

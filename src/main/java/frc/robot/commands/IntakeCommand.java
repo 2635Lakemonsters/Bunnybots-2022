@@ -54,9 +54,9 @@ public class IntakeCommand extends CommandBase {
              Math.abs(currentEP) - Math.abs(m_intakeSubsystem.getGlobalInitialPosition())
            ) % 2048
          )  
-         <= 250.
-          // >= 
-          // (2048-250) //
+        //  <= 350.
+          >= 
+          (2048-250)
        ) {
           // System.out.println("initialEncoderPosition: " + initialEncoderPosition);
             // System.out.println("currentEncoderPosition: " + m_intakeSubsystem.getEncoderPosition());
@@ -70,6 +70,7 @@ public class IntakeCommand extends CommandBase {
         }
     }
   } else { // when elevator is in motion / not at bottom, do not spin intake
+    // end(true); 
     m_intakeSubsystem.spinIntake(0);// if not at bottom, set speed = 0 and continues executing
     System.out.println("!!PUT THE ELEVATOR DOWNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNNN!!!!!!!!!!ERROR!!!!!ELEVATOR!!DOWN!!!!!!!PUT!!THE!!!!ELEVATOR!!DOWN!!!\n!!!!!!!!ERRoR!!!!ELEVATOR!!DOWN!!!\n!!ELEVATOR!!DOWN!!!!!!!ERROR!!!!!!!!!ERROR!!!ELEVATOR!!DOWN!!!!!!!!!ELEVATOR!!DOWN!!!!!!!!!!!!!!!");
   }

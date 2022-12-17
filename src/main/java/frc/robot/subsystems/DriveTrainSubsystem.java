@@ -54,11 +54,11 @@ public class DriveTrainSubsystem extends SubsystemBase {
   public void periodic() {
     // This method will be called once per scheduler run
     if (Robot.isInAuto) {
-      System.out.println("DT distance AUTO = " + m_colorSensor.getProximity());
+      // System.out.println("DT distance AUTO = " + m_colorSensor.getProximity());
       this.leftMotors.set(-this.leftSpeedAuto);
       this.rightMotors.set(this.rightSpeedAuto);
     } else {
-      System.out.println("DT distance TELE = " + m_colorSensor.getProximity());
+      // System.out.println("DT distance TELE = " + m_colorSensor.getProximity());
       this.leftMotors.set(-RobotContainer.leftJoystick.getY());
       this.rightMotors.set(RobotContainer.rightJoystick.getY());    
     }

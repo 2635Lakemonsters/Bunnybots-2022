@@ -23,8 +23,10 @@ public class IntakePneumaticCommandOut extends CommandBase {
   public void initialize() {
     System.out.println("intakePneumaticCommandOut INITIALIZE");
     isExtended = m_intakePneumaticSubsystem.isOpen();
-    if(!isExtended){//if retracted then extend
+    System.out.println(isExtended);
+    if(!isExtended){ // if retracted then extend
       m_intakePneumaticSubsystem.intakeOut();
+      System.out.println(":((((((((((((");
     }
   }
 
